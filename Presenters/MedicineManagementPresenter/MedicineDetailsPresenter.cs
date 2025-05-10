@@ -58,7 +58,8 @@ namespace pharmacy_sys.Presenters.MedicineManagementPresenter
 
                 var editView = new AddMedicineView
                 {
-                    IsEditMode = true
+                    IsEditMode = true,
+                    MedicineBatchId = selectedBatchId,
                 };
 
                 editView.LoadDataEvent += (s, e) =>
@@ -87,10 +88,6 @@ namespace pharmacy_sys.Presenters.MedicineManagementPresenter
             }
         }
 
-        private void EditView_LoadDataEvent(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private void OnDeleteMedicineBatchEvent(object? sender, EventArgs e)
         {

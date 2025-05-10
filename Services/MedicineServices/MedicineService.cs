@@ -74,6 +74,11 @@ namespace pharmacy_sys.Services.MedicineServices
             _medicineBatchRepository.AddMedicineBatch(medicineBatch);
         }
 
+        public void DeductMedicineStock(int medicineId, int quantity)
+        {
+            _medicineBatchRepository.DeductMedicineStock(medicineId, quantity);
+        }
+
         public void DeleteMedicine(int id)
         {
             if(id < 0)
@@ -90,6 +95,12 @@ namespace pharmacy_sys.Services.MedicineServices
                 throw new ArgumentException("Mã lô thuốc không hợp lệ.");
             }
             _medicineBatchRepository.DeleteBatch(id);
+        }
+
+        public List<MedicineProductModel> FilterMedicineProducts(int? groupId = null, decimal? minPrice = null, decimal? maxPrice = null, string? searchText = null)
+        {
+            var medicineProducts = _medicineRepository.FilterMedicineProducts(groupId, minPrice, maxPrice, searchText);
+            return medicineProducts;
         }
 
         public List<string> GetAllMedicineCodes()
@@ -140,6 +151,8 @@ namespace pharmacy_sys.Services.MedicineServices
             }
             return medicine;
         }
+
+        
 
         public List<Medicine> GetMedicinesByGroupId(int groupId)
         {

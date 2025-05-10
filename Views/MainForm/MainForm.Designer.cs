@@ -39,7 +39,7 @@ namespace pharmacy_sys.Views.MainForm
             báoCáoTàiChínhToolStripMenuItem = new ToolStripMenuItem();
             báoCáoThuốcToolStripMenuItem = new ToolStripMenuItem();
             báoCáoToolStripMenuItem = new ToolStripMenuItem();
-            thêmNhàCungCấpToolStripMenuItem = new ToolStripMenuItem();
+            btnPOSView = new ToolStripMenuItem();
             nhàCungCấpToolStripMenuItem = new ToolStripMenuItem();
             btnCategory = new ToolStripMenuItem();
             btnSuppliers = new ToolStripMenuItem();
@@ -115,15 +115,16 @@ namespace pharmacy_sys.Views.MainForm
             báoCáoToolStripMenuItem.Size = new Size(61, 20);
             báoCáoToolStripMenuItem.Text = "Báo cáo";
             // 
-            // thêmNhàCungCấpToolStripMenuItem
+            // btnPOSView
             // 
-            thêmNhàCungCấpToolStripMenuItem.Name = "thêmNhàCungCấpToolStripMenuItem";
-            thêmNhàCungCấpToolStripMenuItem.Size = new Size(124, 22);
-            thêmNhàCungCấpToolStripMenuItem.Text = "Bán hàng";
+            btnPOSView.Name = "btnPOSView";
+            btnPOSView.Size = new Size(124, 22);
+            btnPOSView.Text = "Bán hàng";
+            btnPOSView.Click += btnPOSView_Click;
             // 
             // nhàCungCấpToolStripMenuItem
             // 
-            nhàCungCấpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { thêmNhàCungCấpToolStripMenuItem });
+            nhàCungCấpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnPOSView });
             nhàCungCấpToolStripMenuItem.Name = "nhàCungCấpToolStripMenuItem";
             nhàCungCấpToolStripMenuItem.Size = new Size(69, 20);
             nhàCungCấpToolStripMenuItem.Text = "Giao dịch";
@@ -210,7 +211,7 @@ namespace pharmacy_sys.Views.MainForm
             menuStrip1.Items.AddRange(new ToolStripItem[] { tàiKhoảnToolStripMenuItem, thuốcToolStripMenuItem, nhàCungCấpToolStripMenuItem, báoCáoToolStripMenuItem, hóaĐơnToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1084, 24);
+            menuStrip1.Size = new Size(1184, 24);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -220,7 +221,7 @@ namespace pharmacy_sys.Views.MainForm
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(0, 0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1084, 611);
+            panelMain.Size = new Size(1184, 611);
             panelMain.TabIndex = 3;
             // 
             // statusStrip1
@@ -229,14 +230,14 @@ namespace pharmacy_sys.Views.MainForm
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, lblConnection, lblTime });
             statusStrip1.Location = new Point(0, 589);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1084, 22);
+            statusStrip1.Size = new Size(1184, 22);
             statusStrip1.TabIndex = 0;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(916, 17);
+            toolStripStatusLabel1.Size = new Size(1016, 17);
             toolStripStatusLabel1.Spring = true;
             toolStripStatusLabel1.Text = "🔖 v1.0.0";
             // 
@@ -256,7 +257,7 @@ namespace pharmacy_sys.Views.MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1084, 611);
+            ClientSize = new Size(1184, 611);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             Controls.Add(panelMain);
@@ -264,6 +265,7 @@ namespace pharmacy_sys.Views.MainForm
             MaximumSize = new Size(1200, 650);
             MinimumSize = new Size(800, 400);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Hệ thống quản lý thuốc";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -283,7 +285,7 @@ namespace pharmacy_sys.Views.MainForm
         private ToolStripMenuItem báoCáoTàiChínhToolStripMenuItem;
         private ToolStripMenuItem báoCáoThuốcToolStripMenuItem;
         private ToolStripMenuItem báoCáoToolStripMenuItem;
-        private ToolStripMenuItem thêmNhàCungCấpToolStripMenuItem;
+        private ToolStripMenuItem btnPOSView;
         private ToolStripMenuItem nhàCungCấpToolStripMenuItem;
         private ToolStripMenuItem btnCategory;
         private ToolStripMenuItem btnSuppliers;

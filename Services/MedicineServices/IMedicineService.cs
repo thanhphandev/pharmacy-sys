@@ -1,4 +1,5 @@
 ﻿using pharmacy_sys.Models;
+using pharmacy_sys.Views.POSForm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,11 @@ namespace pharmacy_sys.Services.MedicineServices
         void UpdateMedicineBatch(int id, MedicineBatch medicineBatch);
         void DeleteMedicineBatch(int id);
         MedicineBatch GetMedicineBatchById(int id);
+        public List<MedicineProductModel> FilterMedicineProducts(
+            int? groupId = null,
+            decimal? minPrice = null,
+            decimal? maxPrice = null,
+            string? searchText = null);
+        void DeductMedicineStock(int medicineId, int quantity);
     }
 }

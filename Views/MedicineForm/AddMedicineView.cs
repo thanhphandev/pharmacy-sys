@@ -26,6 +26,7 @@ namespace pharmacy_sys.Views.MedicineForm
         private string selectedImagePath;
         private int medicineId;
         private bool isEditMode = false;
+        private int medicineBatchId;
         public AddMedicineView()
         {
             InitializeComponent();
@@ -134,6 +135,7 @@ namespace pharmacy_sys.Views.MedicineForm
         }
         public bool IsEditMode { get => isEditMode; set => isEditMode = value; }
         public int Id { get => medicineId; set => medicineId = value; }
+        public int MedicineBatchId { get => medicineBatchId; set => medicineBatchId = value; }
 
         public event EventHandler AddMedicineEvent;
         public event EventHandler LoadDataEvent;

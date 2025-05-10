@@ -58,7 +58,7 @@ namespace pharmacy_sys.Presenters.MedicineManagementPresenter
                     MedicineId = _addMedicineView.Id
                 };
 
-                _medicineService.UpdateMedicineBatch(_addMedicineView.Id, medicineBatch);
+                _medicineService.UpdateMedicineBatch(_addMedicineView.MedicineBatchId, medicineBatch);
                 MessageBox.Show("Cập nhật lô thuốc thành công.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _addMedicineView.CloseForm();
             }

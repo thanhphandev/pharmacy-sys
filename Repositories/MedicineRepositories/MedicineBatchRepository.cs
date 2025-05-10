@@ -66,5 +66,41 @@ namespace pharmacy_sys.Repositories.MedicineRepositories
             existingBatch.SupplierId = medicineBatch.SupplierId;
             context.SaveChanges();
         }
+
+        public void DeductMedicineStock(int medicineId, int quantity)
+        {
+            using var context = new PharmacyDbContext();
+
+            var batches = context.MedicineBatches
+                .Where(b => b.MedicineId == medicineId && b.Quantity > 0)
+                .OrderBy(b => b.ExpirationDate) // FEFO
+                .ToList();
+
+            int remaining = quantity;
+
+            foreach (var batch in batches)
+            {
+                if (remaining <= 0) break;
+
+                if (batch.Quantity >= remaining)
+                {
+                    batch.Quantity -= remaining;
+                    remaining = 0;
+                }
+                else
+                {
+                    remaining -= batch.Quantity;
+                    batch.Quantity = 0;
+                }
+            }
+
+            if (remaining > 0)
+            {
+                throw new InvalidOperationException("Không đủ thuốc trong kho để xử lý giao dịch.");
+            }
+
+            context.SaveChanges();
+        }
+
     }
 }

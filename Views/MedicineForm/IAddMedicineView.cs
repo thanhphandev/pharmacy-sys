@@ -16,6 +16,7 @@ namespace pharmacy_sys.Views.MedicineForm
         string? Description { get; set; }
         string? Composition { get; set; }
         string MedicineImage { get; set; }
+        int MedicineBatchId { get; set; }
         int GroupId { get; set; }
         int UnitTypeId { get; set; }
         int SupplierId { get; set; }    

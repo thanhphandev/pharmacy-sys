@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using pharmacy_sys.Models;
 using pharmacy_sys.Views.CategoryForm;
 using pharmacy_sys.Views.MedicineForm;
+using pharmacy_sys.Views.POSForm;
 using pharmacy_sys.Views.SupplierForm;
 using pharmacy_sys.Views.UtilsForm;
 using System;
@@ -121,6 +122,12 @@ namespace pharmacy_sys.Views.MainForm
         {
             IntroductionView introductionView = new IntroductionView();
             AddControls(introductionView);
+        }
+
+        private void btnPOSView_Click(object sender, EventArgs e)
+        {
+            POSView posView = new POSView();
+            AddControls(posView);
         }
     }
 }
