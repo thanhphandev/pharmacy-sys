@@ -10,11 +10,13 @@ namespace pharmacy_sys.Models
     public class Bill
     {
         public int Id { get; set; }
+        public required string Code { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public string CustomerName { get; set; } = string.Empty;
         public int StaffId { get; set; }
         public string? Note { get; set; }
+        public decimal TotalPrice { get; set; } = 0;
 
+        public string? StaffName => Staff?.FullName;
         // Navigation properties
 
         public virtual User Staff { get; set; } = null!;

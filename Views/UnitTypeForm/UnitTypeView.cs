@@ -1,6 +1,8 @@
 ﻿using pharmacy_sys.Models;
 using pharmacy_sys.Presenters.UnitTypePresenter;
+using pharmacy_sys.Repositories.LogRepositories;
 using pharmacy_sys.Repositories.UnitTypeRepositories;
+using pharmacy_sys.Services.LogServices;
 using pharmacy_sys.Services.UnitTypeServices;
 using System;
 using System.Collections.Generic;
@@ -22,7 +24,9 @@ namespace pharmacy_sys.Views.UnitTypeForm
         {
             InitializeComponent();
             IUnitTypeRepository unitTypeRepository = new UnitTypeRepository();
-            IUnitTypeService unitTypeService = new UnitTypeService(unitTypeRepository);
+            var logRepository = new LogRepository();
+            var logService = new LogService(logRepository);
+            IUnitTypeService unitTypeService = new UnitTypeService(unitTypeRepository, logService);
             new UnitTypePresenter(this, unitTypeService);
         }
 

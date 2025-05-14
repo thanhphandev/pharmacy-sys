@@ -1,7 +1,6 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using pharmacy_sys.Models;
 using pharmacy_sys.Views.LoginForm;
-using pharmacy_sys.Views.MainForm;
 using pharmacy_sys.Views.SupplierForm;
 
 namespace pharmacy_sys
@@ -14,10 +13,30 @@ namespace pharmacy_sys
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+
+            if (CanConnectToDatabase())
+            {
+                Application.Run(new LoginView());
+            }
+            else
+            {
+                MessageBox.Show("Không thể kết nối đến CSDL. Vui lòng kiểm tra cấu hình!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        static bool CanConnectToDatabase()
+        {
+            try
+            {
+                using var context = new PharmacyDbContext();
+                return context.Database.CanConnect();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

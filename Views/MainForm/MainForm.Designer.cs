@@ -31,30 +31,29 @@ namespace pharmacy_sys.Views.MainForm
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            liênHệToolStripMenuItem = new ToolStripMenuItem();
-            btnGuides = new ToolStripMenuItem();
+            btnContact = new ToolStripMenuItem();
             hóaĐơnToolStripMenuItem = new ToolStripMenuItem();
             btnIntroductionView = new ToolStripMenuItem();
-            lợiNhuậnToolStripMenuItem = new ToolStripMenuItem();
             báoCáoTàiChínhToolStripMenuItem = new ToolStripMenuItem();
-            báoCáoThuốcToolStripMenuItem = new ToolStripMenuItem();
-            báoCáoToolStripMenuItem = new ToolStripMenuItem();
+            btnSales = new ToolStripMenuItem();
+            btnReport = new ToolStripMenuItem();
             btnPOSView = new ToolStripMenuItem();
             nhàCungCấpToolStripMenuItem = new ToolStripMenuItem();
             btnCategory = new ToolStripMenuItem();
             btnSuppliers = new ToolStripMenuItem();
             btnMedicines = new ToolStripMenuItem();
             thuốcToolStripMenuItem = new ToolStripMenuItem();
-            nhânViênToolStripMenuItem = new ToolStripMenuItem();
+            btnBills = new ToolStripMenuItem();
             btnExit = new ToolStripMenuItem();
-            thoátToolStripMenuItem = new ToolStripMenuItem();
-            saoLưuToolStripMenuItem = new ToolStripMenuItem();
+            btnLogout = new ToolStripMenuItem();
+            btnDatabase = new ToolStripMenuItem();
             btnChangePass = new ToolStripMenuItem();
-            btnLogin = new ToolStripMenuItem();
             tàiKhoảnToolStripMenuItem = new ToolStripMenuItem();
+            btnLogs = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             panelMain = new Panel();
             statusStrip1 = new StatusStrip();
+            txtFullName = new ToolStripStatusLabel();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             lblConnection = new ToolStripStatusLabel();
             lblTime = new ToolStripStatusLabel();
@@ -62,58 +61,48 @@ namespace pharmacy_sys.Views.MainForm
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // liênHệToolStripMenuItem
+            // btnContact
             // 
-            liênHệToolStripMenuItem.Name = "liênHệToolStripMenuItem";
-            liênHệToolStripMenuItem.Size = new Size(134, 22);
-            liênHệToolStripMenuItem.Text = "Liên hệ";
-            // 
-            // btnGuides
-            // 
-            btnGuides.Image = Properties.Resources.logo;
-            btnGuides.Name = "btnGuides";
-            btnGuides.Size = new Size(134, 22);
-            btnGuides.Text = "Hướng dẫn";
-            btnGuides.Click += btnGuides_Click;
+            btnContact.Name = "btnContact";
+            btnContact.Size = new Size(186, 22);
+            btnContact.Text = "Thông tin phần mềm";
+            btnContact.Click += btnContact_Click;
             // 
             // hóaĐơnToolStripMenuItem
             // 
-            hóaĐơnToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnGuides, btnIntroductionView, liênHệToolStripMenuItem });
+            hóaĐơnToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnIntroductionView, btnContact });
+            hóaĐơnToolStripMenuItem.Image = Properties.Resources.question__1_;
             hóaĐơnToolStripMenuItem.Name = "hóaĐơnToolStripMenuItem";
-            hóaĐơnToolStripMenuItem.Size = new Size(62, 20);
+            hóaĐơnToolStripMenuItem.Size = new Size(78, 20);
             hóaĐơnToolStripMenuItem.Text = "Trợ giúp";
             // 
             // btnIntroductionView
             // 
             btnIntroductionView.Name = "btnIntroductionView";
-            btnIntroductionView.Size = new Size(134, 22);
+            btnIntroductionView.Size = new Size(186, 22);
             btnIntroductionView.Text = "Giới thiệu";
             btnIntroductionView.Click += btnIntroductionView_Click;
-            // 
-            // lợiNhuậnToolStripMenuItem
-            // 
-            lợiNhuậnToolStripMenuItem.Name = "lợiNhuậnToolStripMenuItem";
-            lợiNhuậnToolStripMenuItem.Size = new Size(130, 22);
-            lợiNhuậnToolStripMenuItem.Text = "Lợi nhuận";
             // 
             // báoCáoTàiChínhToolStripMenuItem
             // 
             báoCáoTàiChínhToolStripMenuItem.Name = "báoCáoTàiChínhToolStripMenuItem";
-            báoCáoTàiChínhToolStripMenuItem.Size = new Size(130, 22);
+            báoCáoTàiChínhToolStripMenuItem.Size = new Size(124, 22);
             báoCáoTàiChínhToolStripMenuItem.Text = "Tồn kho";
             // 
-            // báoCáoThuốcToolStripMenuItem
+            // btnSales
             // 
-            báoCáoThuốcToolStripMenuItem.Name = "báoCáoThuốcToolStripMenuItem";
-            báoCáoThuốcToolStripMenuItem.Size = new Size(130, 22);
-            báoCáoThuốcToolStripMenuItem.Text = "Doanh thu";
+            btnSales.Name = "btnSales";
+            btnSales.Size = new Size(124, 22);
+            btnSales.Text = "Doanh số";
+            btnSales.Click += btnSales_Click;
             // 
-            // báoCáoToolStripMenuItem
+            // btnReport
             // 
-            báoCáoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { báoCáoThuốcToolStripMenuItem, báoCáoTàiChínhToolStripMenuItem, lợiNhuậnToolStripMenuItem });
-            báoCáoToolStripMenuItem.Name = "báoCáoToolStripMenuItem";
-            báoCáoToolStripMenuItem.Size = new Size(61, 20);
-            báoCáoToolStripMenuItem.Text = "Báo cáo";
+            btnReport.DropDownItems.AddRange(new ToolStripItem[] { btnSales, báoCáoTàiChínhToolStripMenuItem });
+            btnReport.Image = Properties.Resources.add_task;
+            btnReport.Name = "btnReport";
+            btnReport.Size = new Size(77, 20);
+            btnReport.Text = "Báo cáo";
             // 
             // btnPOSView
             // 
@@ -125,15 +114,16 @@ namespace pharmacy_sys.Views.MainForm
             // nhàCungCấpToolStripMenuItem
             // 
             nhàCungCấpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnPOSView });
+            nhàCungCấpToolStripMenuItem.Image = Properties.Resources.transaction;
             nhàCungCấpToolStripMenuItem.Name = "nhàCungCấpToolStripMenuItem";
-            nhàCungCấpToolStripMenuItem.Size = new Size(69, 20);
+            nhàCungCấpToolStripMenuItem.Size = new Size(85, 20);
             nhàCungCấpToolStripMenuItem.Text = "Giao dịch";
             // 
             // btnCategory
             // 
             btnCategory.Name = "btnCategory";
             btnCategory.Size = new Size(148, 22);
-            btnCategory.Text = "Loại thuốc";
+            btnCategory.Text = "Nhóm thuốc";
             btnCategory.Click += btnCategory_Click;
             // 
             // btnSuppliers
@@ -152,16 +142,18 @@ namespace pharmacy_sys.Views.MainForm
             // 
             // thuốcToolStripMenuItem
             // 
-            thuốcToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnMedicines, btnSuppliers, nhânViênToolStripMenuItem, btnCategory });
+            thuốcToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnCategory, btnMedicines, btnSuppliers, btnBills });
+            thuốcToolStripMenuItem.Image = Properties.Resources.software;
             thuốcToolStripMenuItem.Name = "thuốcToolStripMenuItem";
-            thuốcToolStripMenuItem.Size = new Size(60, 20);
+            thuốcToolStripMenuItem.Size = new Size(76, 20);
             thuốcToolStripMenuItem.Text = "Quản lý";
             // 
-            // nhânViênToolStripMenuItem
+            // btnBills
             // 
-            nhânViênToolStripMenuItem.Name = "nhânViênToolStripMenuItem";
-            nhânViênToolStripMenuItem.Size = new Size(148, 22);
-            nhânViênToolStripMenuItem.Text = "Nhân viên";
+            btnBills.Name = "btnBills";
+            btnBills.Size = new Size(148, 22);
+            btnBills.Text = "Hóa đơn";
+            btnBills.Click += btnBills_Click;
             // 
             // btnExit
             // 
@@ -171,17 +163,19 @@ namespace pharmacy_sys.Views.MainForm
             btnExit.Text = "Thoát";
             btnExit.Click += btnExit_Click;
             // 
-            // thoátToolStripMenuItem
+            // btnLogout
             // 
-            thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
-            thoátToolStripMenuItem.Size = new Size(207, 22);
-            thoátToolStripMenuItem.Text = "Đăng xuất";
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(207, 22);
+            btnLogout.Text = "Đăng xuất";
+            btnLogout.Click += btnLogout_Click;
             // 
-            // saoLưuToolStripMenuItem
+            // btnDatabase
             // 
-            saoLưuToolStripMenuItem.Name = "saoLưuToolStripMenuItem";
-            saoLưuToolStripMenuItem.Size = new Size(207, 22);
-            saoLưuToolStripMenuItem.Text = "Sao lưu/ Phục hồi dữ liệu";
+            btnDatabase.Name = "btnDatabase";
+            btnDatabase.Size = new Size(207, 22);
+            btnDatabase.Text = "Sao lưu/ Phục hồi dữ liệu";
+            btnDatabase.Click += btnDatabase_Click;
             // 
             // btnChangePass
             // 
@@ -189,26 +183,26 @@ namespace pharmacy_sys.Views.MainForm
             btnChangePass.Size = new Size(207, 22);
             btnChangePass.Text = "Đổi mật khẩu";
             // 
-            // btnLogin
-            // 
-            btnLogin.Name = "btnLogin";
-            btnLogin.ShortcutKeys = Keys.Alt | Keys.A;
-            btnLogin.Size = new Size(207, 22);
-            btnLogin.Text = "Tài khoản";
-            btnLogin.Click += btnLogin_Click;
-            // 
             // tàiKhoảnToolStripMenuItem
             // 
-            tàiKhoảnToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnLogin, btnChangePass, saoLưuToolStripMenuItem, thoátToolStripMenuItem, btnExit });
+            tàiKhoảnToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnChangePass, btnLogs, btnDatabase, btnLogout, btnExit });
             tàiKhoảnToolStripMenuItem.ForeColor = SystemColors.ControlText;
+            tàiKhoảnToolStripMenuItem.Image = Properties.Resources.user;
             tàiKhoảnToolStripMenuItem.Name = "tàiKhoảnToolStripMenuItem";
-            tàiKhoảnToolStripMenuItem.Size = new Size(69, 20);
+            tàiKhoảnToolStripMenuItem.Size = new Size(85, 20);
             tàiKhoảnToolStripMenuItem.Text = "Hệ thống";
+            // 
+            // btnLogs
+            // 
+            btnLogs.Name = "btnLogs";
+            btnLogs.Size = new Size(207, 22);
+            btnLogs.Text = "Nhật ký hệ thống";
+            btnLogs.Click += btnLogs_Click;
             // 
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.FromArgb(218, 223, 255);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { tàiKhoảnToolStripMenuItem, thuốcToolStripMenuItem, nhàCungCấpToolStripMenuItem, báoCáoToolStripMenuItem, hóaĐơnToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { tàiKhoảnToolStripMenuItem, thuốcToolStripMenuItem, nhàCungCấpToolStripMenuItem, btnReport, hóaĐơnToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1184, 24);
@@ -227,17 +221,23 @@ namespace pharmacy_sys.Views.MainForm
             // statusStrip1
             // 
             statusStrip1.AutoSize = false;
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, lblConnection, lblTime });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { txtFullName, toolStripStatusLabel1, lblConnection, lblTime });
             statusStrip1.Location = new Point(0, 589);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(1184, 22);
             statusStrip1.TabIndex = 0;
             statusStrip1.Text = "statusStrip1";
             // 
+            // txtFullName
+            // 
+            txtFullName.Name = "txtFullName";
+            txtFullName.Size = new Size(30, 17);
+            txtFullName.Text = "User";
+            // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(1016, 17);
+            toolStripStatusLabel1.Size = new Size(986, 17);
             toolStripStatusLabel1.Spring = true;
             toolStripStatusLabel1.Text = "🔖 v1.0.0";
             // 
@@ -276,27 +276,22 @@ namespace pharmacy_sys.Views.MainForm
         }
 
         #endregion
-
-        private ToolStripMenuItem liênHệToolStripMenuItem;
-        private ToolStripMenuItem btnGuides;
+        private ToolStripMenuItem btnContact;
         private ToolStripMenuItem hóaĐơnToolStripMenuItem;
         private ToolStripMenuItem btnIntroductionView;
-        private ToolStripMenuItem lợiNhuậnToolStripMenuItem;
         private ToolStripMenuItem báoCáoTàiChínhToolStripMenuItem;
-        private ToolStripMenuItem báoCáoThuốcToolStripMenuItem;
-        private ToolStripMenuItem báoCáoToolStripMenuItem;
+        private ToolStripMenuItem btnSales;
+        private ToolStripMenuItem btnReport;
         private ToolStripMenuItem btnPOSView;
         private ToolStripMenuItem nhàCungCấpToolStripMenuItem;
         private ToolStripMenuItem btnCategory;
         private ToolStripMenuItem btnSuppliers;
         private ToolStripMenuItem btnMedicines;
         private ToolStripMenuItem thuốcToolStripMenuItem;
-        private ToolStripMenuItem nhânViênToolStripMenuItem;
         private ToolStripMenuItem btnExit;
-        private ToolStripMenuItem thoátToolStripMenuItem;
-        private ToolStripMenuItem saoLưuToolStripMenuItem;
+        private ToolStripMenuItem btnLogout;
+        private ToolStripMenuItem btnDatabase;
         private ToolStripMenuItem btnChangePass;
-        private ToolStripMenuItem btnLogin;
         private ToolStripMenuItem tàiKhoảnToolStripMenuItem;
         private MenuStrip menuStrip1;
         private Panel panelMain;
@@ -304,5 +299,8 @@ namespace pharmacy_sys.Views.MainForm
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel lblConnection;
         private ToolStripStatusLabel lblTime;
+        private ToolStripStatusLabel txtFullName;
+        private ToolStripMenuItem btnBills;
+        private ToolStripMenuItem btnLogs;
     }
 }

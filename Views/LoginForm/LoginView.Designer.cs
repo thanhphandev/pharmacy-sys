@@ -28,365 +28,213 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panelLeft = new Panel();
-            lblSlogan = new Label();
-            pictureBox2 = new PictureBox();
-            lblAppName = new Label();
-            panelRight = new Panel();
-            lblForgotPassword = new LinkLabel();
-            btnExit = new Button();
-            btnLogin = new Button();
-            lkRegister = new LinkLabel();
-            label5 = new Label();
-            chkDisplayPassword = new CheckBox();
-            panelPassword = new Panel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginView));
+            label1 = new Label();
             txtPassword = new TextBox();
-            pictureBoxPassword = new PictureBox();
-            lblPassword = new Label();
-            panelUsername = new Panel();
-            txtUsername = new TextBox();
-            pictureBoxUser = new PictureBox();
+            label4 = new Label();
+            txtEmail = new TextBox();
+            chkDisplayPassword = new CheckBox();
+            label5 = new Label();
+            lkRegister = new LinkLabel();
             lbUsername = new Label();
-            lblWelcome = new Label();
-            panelLeft.SuspendLayout();
+            btnLogin = new Button();
+            btnExit = new Button();
+            pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panelRight.SuspendLayout();
-            panelPassword.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPassword).BeginInit();
-            panelUsername.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxUser).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // panelLeft
+            // label1
             // 
-            panelLeft.BackColor = Color.FromArgb(245, 247, 255);
-            panelLeft.Controls.Add(lblSlogan);
-            panelLeft.Controls.Add(pictureBox2);
-            panelLeft.Controls.Add(lblAppName);
-            panelLeft.Dock = DockStyle.Left;
-            panelLeft.Location = new Point(0, 0);
-            panelLeft.Margin = new Padding(4, 3, 4, 3);
-            panelLeft.Name = "panelLeft";
-            panelLeft.Size = new Size(387, 612);
-            panelLeft.TabIndex = 0;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.SteelBlue;
+            label1.Location = new Point(516, 173);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(319, 25);
+            label1.TabIndex = 1;
+            label1.Text = "Chào mừng bạn! Xin mời đăng nhập";
             // 
-            // lblSlogan
+            // txtPassword
             // 
-            lblSlogan.AutoSize = true;
-            lblSlogan.Font = new Font("Segoe UI", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblSlogan.ForeColor = Color.FromArgb(192, 100, 255);
-            lblSlogan.Location = new Point(89, 240);
-            lblSlogan.Margin = new Padding(4, 0, 4, 0);
-            lblSlogan.Name = "lblSlogan";
-            lblSlogan.Size = new Size(204, 25);
-            lblSlogan.TabIndex = 1;
-            lblSlogan.Text = "Hệ thống quản lý thuốc";
+            txtPassword.Location = new Point(522, 310);
+            txtPassword.Margin = new Padding(4, 3, 4, 3);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(255, 23);
+            txtPassword.TabIndex = 3;
+            txtPassword.Text = "thanhphanvan";
             // 
-            // pictureBox2
+            // label4
             // 
-            pictureBox2.Image = Properties.Resources.logo;
-            pictureBox2.Location = new Point(67, 152);
-            pictureBox2.Margin = new Padding(4, 3, 4, 3);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(65, 58);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 6;
-            pictureBox2.TabStop = false;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(552, 290);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(62, 17);
+            label4.TabIndex = 2;
+            label4.Text = "Mật khẩu";
             // 
-            // lblAppName
+            // txtEmail
             // 
-            lblAppName.AutoSize = true;
-            lblAppName.BackColor = Color.White;
-            lblAppName.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAppName.ForeColor = Color.FromArgb(128, 128, 255);
-            lblAppName.Location = new Point(140, 165);
-            lblAppName.Margin = new Padding(4, 0, 4, 0);
-            lblAppName.Name = "lblAppName";
-            lblAppName.Size = new Size(202, 45);
-            lblAppName.TabIndex = 0;
-            lblAppName.Text = "PHARMACY";
-            // 
-            // panelRight
-            // 
-            panelRight.BackColor = Color.White;
-            panelRight.Controls.Add(lblForgotPassword);
-            panelRight.Controls.Add(btnExit);
-            panelRight.Controls.Add(btnLogin);
-            panelRight.Controls.Add(lkRegister);
-            panelRight.Controls.Add(label5);
-            panelRight.Controls.Add(chkDisplayPassword);
-            panelRight.Controls.Add(panelPassword);
-            panelRight.Controls.Add(panelUsername);
-            panelRight.Controls.Add(lblWelcome);
-            panelRight.Dock = DockStyle.Fill;
-            panelRight.Location = new Point(387, 0);
-            panelRight.Margin = new Padding(4, 3, 4, 3);
-            panelRight.Name = "panelRight";
-            panelRight.Size = new Size(605, 612);
-            panelRight.TabIndex = 1;
-            // 
-            // lblForgotPassword
-            // 
-            lblForgotPassword.AutoSize = true;
-            lblForgotPassword.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblForgotPassword.ForeColor = Color.FromArgb(41, 128, 185);
-            lblForgotPassword.Location = new Point(309, 358);
-            lblForgotPassword.Margin = new Padding(4, 0, 4, 0);
-            lblForgotPassword.Name = "lblForgotPassword";
-            lblForgotPassword.Size = new Size(94, 15);
-            lblForgotPassword.TabIndex = 5;
-            lblForgotPassword.TabStop = true;
-            lblForgotPassword.Text = "Quên mật khẩu?";
-            // 
-            // btnExit
-            // 
-            btnExit.BackColor = Color.FromArgb(224, 224, 224);
-            btnExit.FlatAppearance.BorderSize = 0;
-            btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnExit.ForeColor = Color.FromArgb(41, 128, 185);
-            btnExit.Location = new Point(266, 398);
-            btnExit.Margin = new Padding(4, 3, 4, 3);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(163, 46);
-            btnExit.TabIndex = 4;
-            btnExit.Text = "THOÁT";
-            btnExit.UseVisualStyleBackColor = false;
-            btnExit.Click += btnExit_Click;
-            // 
-            // btnLogin
-            // 
-            btnLogin.BackColor = Color.FromArgb(41, 128, 185);
-            btnLogin.FlatAppearance.BorderSize = 0;
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(93, 398);
-            btnLogin.Margin = new Padding(4, 3, 4, 3);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(163, 46);
-            btnLogin.TabIndex = 3;
-            btnLogin.Text = "ĐĂNG NHẬP";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
-            // 
-            // lkRegister
-            // 
-            lkRegister.AutoSize = true;
-            lkRegister.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lkRegister.ForeColor = Color.FromArgb(41, 128, 185);
-            lkRegister.Location = new Point(254, 467);
-            lkRegister.Margin = new Padding(4, 0, 4, 0);
-            lkRegister.Name = "lkRegister";
-            lkRegister.Size = new Size(93, 17);
-            lkRegister.TabIndex = 6;
-            lkRegister.TabStop = true;
-            lkRegister.Text = "Đăng ký ngay";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Gray;
-            label5.Location = new Point(113, 467);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(142, 17);
-            label5.TabIndex = 5;
-            label5.Text = "Bạn chưa có tài khoản?";
+            txtEmail.Location = new Point(522, 256);
+            txtEmail.Margin = new Padding(4, 3, 4, 3);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(255, 23);
+            txtEmail.TabIndex = 3;
+            txtEmail.Text = "thanhphanvan1610@gmail.com";
             // 
             // chkDisplayPassword
             // 
             chkDisplayPassword.AutoSize = true;
-            chkDisplayPassword.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkDisplayPassword.ForeColor = Color.Gray;
-            chkDisplayPassword.Location = new Point(93, 358);
+            chkDisplayPassword.Location = new Point(522, 340);
             chkDisplayPassword.Margin = new Padding(4, 3, 4, 3);
             chkDisplayPassword.Name = "chkDisplayPassword";
             chkDisplayPassword.Size = new Size(121, 19);
-            chkDisplayPassword.TabIndex = 2;
+            chkDisplayPassword.TabIndex = 5;
             chkDisplayPassword.Text = "Hiển thị mật khẩu";
             chkDisplayPassword.UseVisualStyleBackColor = true;
             chkDisplayPassword.CheckedChanged += chkDisplayPassword_CheckedChanged;
             // 
-            // panelPassword
+            // label5
             // 
-            panelPassword.BackColor = Color.White;
-            panelPassword.BorderStyle = BorderStyle.FixedSingle;
-            panelPassword.Controls.Add(txtPassword);
-            panelPassword.Controls.Add(pictureBoxPassword);
-            panelPassword.Controls.Add(lblPassword);
-            panelPassword.Location = new Point(88, 271);
-            panelPassword.Margin = new Padding(4, 3, 4, 3);
-            panelPassword.Name = "panelPassword";
-            panelPassword.Size = new Size(338, 69);
-            panelPassword.TabIndex = 1;
+            label5.AutoSize = true;
+            label5.Location = new Point(518, 402);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(129, 15);
+            label5.TabIndex = 6;
+            label5.Text = "Bạn chưa có tài khoản?";
             // 
-            // txtPassword
+            // lkRegister
             // 
-            txtPassword.BackColor = Color.White;
-            txtPassword.BorderStyle = BorderStyle.None;
-            txtPassword.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPassword.ForeColor = Color.FromArgb(41, 128, 185);
-            txtPassword.Location = new Point(64, 35);
-            txtPassword.Margin = new Padding(4, 3, 4, 3);
-            txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '•';
-            txtPassword.Size = new Size(268, 22);
-            txtPassword.TabIndex = 0;
-            // 
-            // pictureBoxPassword
-            // 
-            pictureBoxPassword.Image = Properties.Resources.shield;
-            pictureBoxPassword.Location = new Point(18, 18);
-            pictureBoxPassword.Margin = new Padding(4, 3, 4, 3);
-            pictureBoxPassword.Name = "pictureBoxPassword";
-            pictureBoxPassword.Size = new Size(28, 28);
-            pictureBoxPassword.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxPassword.TabIndex = 1;
-            pictureBoxPassword.TabStop = false;
-            // 
-            // lblPassword
-            // 
-            lblPassword.AutoSize = true;
-            lblPassword.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPassword.ForeColor = Color.Gray;
-            lblPassword.Location = new Point(61, 9);
-            lblPassword.Margin = new Padding(4, 0, 4, 0);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(67, 15);
-            lblPassword.TabIndex = 0;
-            lblPassword.Text = "MẬT KHẨU";
-            // 
-            // panelUsername
-            // 
-            panelUsername.BackColor = Color.White;
-            panelUsername.BorderStyle = BorderStyle.FixedSingle;
-            panelUsername.Controls.Add(txtUsername);
-            panelUsername.Controls.Add(pictureBoxUser);
-            panelUsername.Controls.Add(lbUsername);
-            panelUsername.Location = new Point(88, 196);
-            panelUsername.Margin = new Padding(4, 3, 4, 3);
-            panelUsername.Name = "panelUsername";
-            panelUsername.Size = new Size(338, 69);
-            panelUsername.TabIndex = 0;
-            // 
-            // txtUsername
-            // 
-            txtUsername.BackColor = Color.White;
-            txtUsername.BorderStyle = BorderStyle.None;
-            txtUsername.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUsername.ForeColor = Color.FromArgb(41, 128, 185);
-            txtUsername.Location = new Point(64, 35);
-            txtUsername.Margin = new Padding(4, 3, 4, 3);
-            txtUsername.Multiline = true;
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(268, 23);
-            txtUsername.TabIndex = 0;
-            // 
-            // pictureBoxUser
-            // 
-            pictureBoxUser.Image = Properties.Resources.user;
-            pictureBoxUser.Location = new Point(18, 29);
-            pictureBoxUser.Margin = new Padding(4, 3, 4, 3);
-            pictureBoxUser.Name = "pictureBoxUser";
-            pictureBoxUser.Size = new Size(28, 28);
-            pictureBoxUser.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxUser.TabIndex = 1;
-            pictureBoxUser.TabStop = false;
+            lkRegister.AutoSize = true;
+            lkRegister.Location = new Point(644, 402);
+            lkRegister.Margin = new Padding(4, 0, 4, 0);
+            lkRegister.Name = "lkRegister";
+            lkRegister.Size = new Size(79, 15);
+            lkRegister.TabIndex = 7;
+            lkRegister.TabStop = true;
+            lkRegister.Text = "Đăng ký ngay";
+            lkRegister.LinkClicked += lkRegister_LinkClicked;
             // 
             // lbUsername
             // 
             lbUsername.AutoSize = true;
-            lbUsername.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbUsername.ForeColor = Color.Gray;
-            lbUsername.Location = new Point(61, 9);
+            lbUsername.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbUsername.Location = new Point(552, 233);
             lbUsername.Margin = new Padding(4, 0, 4, 0);
             lbUsername.Name = "lbUsername";
-            lbUsername.Size = new Size(100, 15);
-            lbUsername.TabIndex = 0;
-            lbUsername.Text = "TÊN ĐĂNG NHẬP";
+            lbUsername.Size = new Size(39, 17);
+            lbUsername.TabIndex = 8;
+            lbUsername.Text = "Email";
             // 
-            // lblWelcome
+            // btnLogin
             // 
-            lblWelcome.AutoSize = true;
-            lblWelcome.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblWelcome.ForeColor = Color.FromArgb(41, 128, 185);
-            lblWelcome.Location = new Point(166, 128);
-            lblWelcome.Margin = new Padding(4, 0, 4, 0);
-            lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(181, 37);
-            lblWelcome.TabIndex = 0;
-            lblWelcome.Text = "ĐĂNG NHẬP";
+            btnLogin.Location = new Point(522, 368);
+            btnLogin.Margin = new Padding(4, 3, 4, 3);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(88, 27);
+            btnLogin.TabIndex = 9;
+            btnLogin.Text = "Đăng nhập";
+            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
+            // 
+            // btnExit
+            // 
+            btnExit.Location = new Point(653, 368);
+            btnExit.Margin = new Padding(4, 3, 4, 3);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(88, 27);
+            btnExit.TabIndex = 10;
+            btnExit.Text = "Thoát";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.shield;
+            pictureBox2.Location = new Point(522, 287);
+            pictureBox2.Margin = new Padding(4, 3, 4, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(20, 20);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 11;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.user;
+            pictureBox1.Location = new Point(522, 230);
+            pictureBox1.Margin = new Padding(4, 3, 4, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(20, 20);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 11;
+            pictureBox1.TabStop = false;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(227, 242, 253);
+            panel1.BackgroundImage = Properties.Resources.bg_pharmacy;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Dock = DockStyle.Left;
+            panel1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(4, 3, 4, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(475, 532);
+            panel1.TabIndex = 0;
             // 
             // LoginView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(992, 612);
-            Controls.Add(panelRight);
-            Controls.Add(panelLeft);
-            FormBorderStyle = FormBorderStyle.None;
+            BackColor = Color.FromArgb(252, 250, 250);
+            ClientSize = new Size(915, 532);
+            Controls.Add(pictureBox2);
+            Controls.Add(pictureBox1);
+            Controls.Add(btnExit);
+            Controls.Add(btnLogin);
+            Controls.Add(lbUsername);
+            Controls.Add(lkRegister);
+            Controls.Add(label5);
+            Controls.Add(chkDisplayPassword);
+            Controls.Add(txtEmail);
+            Controls.Add(txtPassword);
+            Controls.Add(label4);
+            Controls.Add(label1);
+            Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
-            MaximizeBox = false;
-            MinimizeBox = false;
+            MaximumSize = new Size(931, 571);
             Name = "LoginView";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Đăng nhập";
-            panelLeft.ResumeLayout(false);
-            panelLeft.PerformLayout();
+            Text = "Đăng nhập tài khoản";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panelRight.ResumeLayout(false);
-            panelRight.PerformLayout();
-            panelPassword.ResumeLayout(false);
-            panelPassword.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPassword).EndInit();
-            panelUsername.ResumeLayout(false);
-            panelUsername.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxUser).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
+
         }
 
-        #region Fields
-        private System.Windows.Forms.Panel panelLeft;
-        private System.Windows.Forms.Label lblAppName;
-        private System.Windows.Forms.Label lblSlogan;
-        private System.Windows.Forms.Panel panelRight;
-        private System.Windows.Forms.Label lblWelcome;
-        private System.Windows.Forms.Panel panelUsername;
-        private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.PictureBox pictureBoxUser;
-        private System.Windows.Forms.Label lbUsername;
-        private System.Windows.Forms.Panel panelPassword;
+        #endregion
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.PictureBox pictureBoxPassword;
-        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.CheckBox chkDisplayPassword;
-        private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.LinkLabel lkRegister;
-        private System.Windows.Forms.LinkLabel lblForgotPassword;
+        private System.Windows.Forms.Label lbUsername;
+        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        #endregion
-
-        private void chkDisplayPassword_CheckedChanged(object sender, EventArgs e)
-        {
-            txtPassword.PasswordChar = chkDisplayPassword.Checked ? '\0' : '•';
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            // Thêm logic đăng nhập ở đây
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        #endregion
-
     }
 }

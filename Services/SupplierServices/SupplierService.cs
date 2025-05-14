@@ -2,21 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using ClosedXML.Excel;
 using pharmacy_sys.Common;
 using pharmacy_sys.Models;
+using pharmacy_sys.Repositories.LogRepositories;
 using pharmacy_sys.Repositories.SupplierRepositories;
+using pharmacy_sys.Services.LogServices;
 
 namespace pharmacy_sys.Services.SupplierServices
 {
     public class SupplierService : ISupplierService
     {
         private readonly ISupplierRepository _supplierRepository;
+        private readonly ILogService _logService;
 
-        public SupplierService(ISupplierRepository supplierRepository)
+        public SupplierService(ISupplierRepository supplierRepository, ILogService logService)
         {
             _supplierRepository = supplierRepository;
+            _logService = logService;
         }
 
         public void AddSupplier(string name, string phone, string address)
@@ -39,8 +44,14 @@ namespace pharmacy_sys.Services.SupplierServices
                 Address = address
             };
 
-            _supplierRepository.AddSupplier(supplier);
-
+            int id = _supplierRepository.AddSupplier(supplier);
+            _logService.CreateLogAction(
+                staffId: UserSession.Id,
+                action: "CREATE",
+                targetTable: "Suppliers",
+                targetId: id.ToString(),
+                message: $"Đã thêm nhà cung cấp {supplier.Name}."
+            );
         }
 
         public void DeleteSupplier(int id)
@@ -51,6 +62,13 @@ namespace pharmacy_sys.Services.SupplierServices
             }
 
             _supplierRepository.DeleteSupplier(id);
+            _logService.CreateLogAction(
+                staffId: UserSession.Id,
+                action: "DELETE",
+                targetTable: "Suppliers",
+                targetId: id.ToString(),
+                message: $"Đã xóa nhà cung cấp có ID {id}."
+            );
         }
 
         public void ExportToCsv(List<Supplier> suppliers, string filePath)
@@ -162,8 +180,22 @@ namespace pharmacy_sys.Services.SupplierServices
             {
                 throw new ArgumentNullException(nameof(supplier), "Nhà cung cấp không được null");
             }
-
+            var supplierToUpdate = _supplierRepository.GetSupplierById(id);
+            if (supplierToUpdate == null)
+            {
+                throw new ArgumentException("Không tìm thấy nhà cung cấp với ID này", nameof(id));
+            }
+            supplier.Id = supplierToUpdate.Id;
             _supplierRepository.UpdateSupplier(id, supplier);
+            _logService.CreateLogAction(
+                staffId: UserSession.Id,
+                action: "UPDATE",
+                targetTable: "Suppliers",
+                targetId: id.ToString(),
+                message: $"Đã cập nhật nhà cung cấp có ID {id}.",
+                oldValue: JsonSerializer.Serialize(supplierToUpdate),
+                newValue: JsonSerializer.Serialize(supplier)
+            );
         }
     }
 }

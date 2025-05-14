@@ -34,18 +34,18 @@
             label4 = new Label();
             cbFilterPrice = new ComboBox();
             cbCategory = new ComboBox();
-            btnDashboard = new PictureBox();
             btnSearch = new PictureBox();
             txtSearch = new TextBox();
-            btnLogout = new PictureBox();
             panel3 = new Panel();
             panel2 = new Panel();
+            txtNote = new TextBox();
             btnCancel = new Button();
             btnPayment = new Button();
             txtTotal = new Label();
-            txtChange = new Label();
+            txtTotalPrice = new Label();
             txtVAT = new Label();
             label3 = new Label();
+            label6 = new Label();
             label1 = new Label();
             label2 = new Label();
             CartItemsDataGrid = new DataGridView();
@@ -61,12 +61,8 @@
             MedicineProductPanel = new FlowLayoutPanel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             dataGridViewImageColumn1 = new DataGridViewImageColumn();
-            label6 = new Label();
-            txtCustomer = new TextBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)btnDashboard).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnSearch).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnLogout).BeginInit();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CartItemsDataGrid).BeginInit();
@@ -80,10 +76,8 @@
             panel1.Controls.Add(label4);
             panel1.Controls.Add(cbFilterPrice);
             panel1.Controls.Add(cbCategory);
-            panel1.Controls.Add(btnDashboard);
             panel1.Controls.Add(btnSearch);
             panel1.Controls.Add(txtSearch);
-            panel1.Controls.Add(btnLogout);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -92,11 +86,11 @@
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(833, 32);
+            btnRefresh.Location = new Point(816, 33);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(75, 23);
             btnRefresh.TabIndex = 11;
-            btnRefresh.Text = "Làm mói";
+            btnRefresh.Text = "Làm mới";
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += btnRefresh_Click;
             // 
@@ -138,17 +132,6 @@
             cbCategory.TabIndex = 7;
             cbCategory.SelectedIndexChanged += cbCategory_SelectedIndexChanged;
             // 
-            // btnDashboard
-            // 
-            btnDashboard.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDashboard.Cursor = Cursors.Hand;
-            btnDashboard.Location = new Point(1144, 17);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(30, 30);
-            btnDashboard.SizeMode = PictureBoxSizeMode.StretchImage;
-            btnDashboard.TabIndex = 6;
-            btnDashboard.TabStop = false;
-            // 
             // btnSearch
             // 
             btnSearch.Cursor = Cursors.Hand;
@@ -168,17 +151,6 @@
             txtSearch.Size = new Size(367, 25);
             txtSearch.TabIndex = 4;
             // 
-            // btnLogout
-            // 
-            btnLogout.Anchor = AnchorStyles.Right;
-            btnLogout.Cursor = Cursors.Hand;
-            btnLogout.Location = new Point(1192, 17);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(30, 30);
-            btnLogout.SizeMode = PictureBoxSizeMode.StretchImage;
-            btnLogout.TabIndex = 2;
-            btnLogout.TabStop = false;
-            // 
             // panel3
             // 
             panel3.BackColor = SystemColors.ControlLight;
@@ -196,11 +168,11 @@
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            panel2.Controls.Add(txtCustomer);
+            panel2.Controls.Add(txtNote);
             panel2.Controls.Add(btnCancel);
             panel2.Controls.Add(btnPayment);
             panel2.Controls.Add(txtTotal);
-            panel2.Controls.Add(txtChange);
+            panel2.Controls.Add(txtTotalPrice);
             panel2.Controls.Add(txtVAT);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label6);
@@ -210,6 +182,13 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(522, 178);
             panel2.TabIndex = 10;
+            // 
+            // txtNote
+            // 
+            txtNote.Location = new Point(298, 91);
+            txtNote.Name = "txtNote";
+            txtNote.Size = new Size(164, 25);
+            txtNote.TabIndex = 3;
             // 
             // btnCancel
             // 
@@ -252,15 +231,15 @@
             txtTotal.TabIndex = 1;
             txtTotal.Text = "0 đ";
             // 
-            // txtChange
+            // txtTotalPrice
             // 
-            txtChange.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtChange.AutoSize = true;
-            txtChange.Location = new Point(435, 62);
-            txtChange.Name = "txtChange";
-            txtChange.Size = new Size(27, 17);
-            txtChange.TabIndex = 1;
-            txtChange.Text = "0 đ";
+            txtTotalPrice.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtTotalPrice.AutoSize = true;
+            txtTotalPrice.Location = new Point(435, 62);
+            txtTotalPrice.Name = "txtTotalPrice";
+            txtTotalPrice.Size = new Size(27, 17);
+            txtTotalPrice.TabIndex = 1;
+            txtTotalPrice.Text = "0 đ";
             // 
             // txtVAT
             // 
@@ -282,6 +261,17 @@
             label3.Size = new Size(68, 19);
             label3.TabIndex = 0;
             label3.Text = "VAT (8%)";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            label6.ForeColor = SystemColors.HotTrack;
+            label6.Location = new Point(15, 91);
+            label6.Name = "label6";
+            label6.Size = new Size(58, 19);
+            label6.TabIndex = 0;
+            label6.Text = "Ghi chú";
             // 
             // label1
             // 
@@ -419,24 +409,6 @@
             dataGridViewImageColumn1.ReadOnly = true;
             dataGridViewImageColumn1.Width = 26;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
-            label6.ForeColor = SystemColors.HotTrack;
-            label6.Location = new Point(15, 91);
-            label6.Name = "label6";
-            label6.Size = new Size(112, 19);
-            label6.TabIndex = 0;
-            label6.Text = "Tên khách hàng";
-            // 
-            // txtCustomer
-            // 
-            txtCustomer.Location = new Point(325, 91);
-            txtCustomer.Name = "txtCustomer";
-            txtCustomer.Size = new Size(137, 25);
-            txtCustomer.TabIndex = 3;
-            // 
             // POSView
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -455,9 +427,7 @@
             Load += POSView_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)btnDashboard).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnSearch).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnLogout).EndInit();
             panel3.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -469,10 +439,8 @@
         #endregion
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.PictureBox btnLogout;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.PictureBox btnSearch;
-        private System.Windows.Forms.PictureBox btnDashboard;
         private System.Windows.Forms.FlowLayoutPanel MedicineProductPanel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ComboBox cbCategory;
@@ -486,7 +454,7 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label txtChange;
+        private System.Windows.Forms.Label txtTotalPrice;
         private Label label5;
         private Label label4;
         private ComboBox cbFilterPrice;
@@ -500,7 +468,7 @@
         private DataGridViewTextBoxColumn dgvPrice;
         private DataGridViewTextBoxColumn dgvAmount;
         private DataGridViewImageColumn dgvDelete;
-        private TextBox txtCustomer;
+        private TextBox txtNote;
         private Label label6;
     }
 }

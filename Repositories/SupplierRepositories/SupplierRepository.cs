@@ -9,14 +9,16 @@ namespace pharmacy_sys.Repositories.SupplierRepositories
 {
     internal class SupplierRepository : ISupplierRepository
     {
-        public void AddSupplier(Supplier supplier)
+        public int AddSupplier(Supplier supplier)
         {
             using (var context = new PharmacyDbContext())
             {
                 context.Suppliers.Add(supplier);
                 context.SaveChanges();
+                return supplier.Id;
             }
         }
+
 
         public void DeleteSupplier(int id)
         {
@@ -37,6 +39,20 @@ namespace pharmacy_sys.Repositories.SupplierRepositories
            {
                 return context.Suppliers.ToList();
            }
+        }
+
+        public Supplier GetSupplierById(int id)
+        {
+            using (var context = new PharmacyDbContext())
+            {
+                var supplier = context.Suppliers.Find(id);
+                if (supplier == null)
+                {
+                    throw new InvalidOperationException($"Không tìm thấy nhà cung cấp với ID = {id}");
+                }
+                return supplier;
+            }
+
         }
 
         public List<Supplier> SearchSupplierByName(string searchText)

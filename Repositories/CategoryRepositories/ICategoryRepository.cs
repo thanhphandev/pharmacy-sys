@@ -9,9 +9,10 @@ namespace pharmacy_sys.Repositories.CategoryRepositories
 {
     public interface ICategoryRepository
     {
-        void AddCategory(string categoryName, string? description);
+        int AddCategory(string categoryName, string? description);
         List<MedicineGroup> GetAllCategories();
         void DeleteCategory(int id);
         void UpdateCategory(int id, string name, string? description);
+        MedicineGroup GetCategoryById(int id);
     }
 }

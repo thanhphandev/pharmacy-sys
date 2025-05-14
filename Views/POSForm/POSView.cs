@@ -2,9 +2,11 @@
 using pharmacy_sys.Models;
 using pharmacy_sys.Presenters.POSPresenter;
 using pharmacy_sys.Repositories.CategoryRepositories;
+using pharmacy_sys.Repositories.LogRepositories;
 using pharmacy_sys.Repositories.MedicineRepositories;
 using pharmacy_sys.Repositories.POSRepositories;
 using pharmacy_sys.Services.CategoryServices;
+using pharmacy_sys.Services.LogServices;
 using pharmacy_sys.Services.MedicineServices;
 using pharmacy_sys.Services.POSServices;
 using System;
@@ -22,20 +24,23 @@ namespace pharmacy_sys.Views.POSForm
 {
     public partial class POSView : Form, IPOSView
     {
+        private bool _isInitialized = false;
         public POSView()
         {
             InitializeComponent();
+
             var medicineRepository = new MedicineRepository();
             var medicineBatchRepository = new MedicineBatchRepository();
             var categoryRepository = new CategoryRepository();
             var billRepository = new BillRepository();
+            var logRepository = new LogRepository();
 
-            var categoryService = new CategoryService(categoryRepository);
-            var medicineService = new MedicineService(medicineRepository, medicineBatchRepository);
-            var posService = new POSService(billRepository, medicineService);
+            var logService = new LogService(logRepository);
+            var categoryService = new CategoryService(categoryRepository, logService);
+            var medicineService = new MedicineService(medicineRepository, medicineBatchRepository, logService);
+            var posService = new POSService(billRepository, medicineService, logService);
             
             new POSPresenter(this, medicineService, categoryService, posService);
-
         }
 
         public string SearchText { get => txtSearch.Text; set => txtSearch.Text = value; }
@@ -76,7 +81,8 @@ namespace pharmacy_sys.Views.POSForm
             }
         }
 
-        public string CustomerName { get => txtCustomer.Text; set => txtCustomer.Text = value; }
+        public string Note { get => txtNote.Text; set => txtNote.Text = value; }
+        public decimal TotalPrice { get => CurrencyFormatter.ParseVietnameseCurrency(txtTotalPrice.Text); set => txtTotalPrice.Text = CurrencyFormatter.FormatVietnameseCurrency(value); }
 
         public event EventHandler LoadMedicineProductsEvent;
         public event EventHandler SearchMedicines;
@@ -94,6 +100,7 @@ namespace pharmacy_sys.Views.POSForm
             cbCategory.DisplayMember = "Name";
             cbCategory.ValueMember = "Id";
             cbCategory.SelectedIndex = 0;
+            _isInitialized = true;
         }
 
         public void LoadMedicineProducts(List<MedicineProductModel> medicineProducts)
@@ -184,7 +191,7 @@ namespace pharmacy_sys.Views.POSForm
             txtTotal.Text = CurrencyFormatter.FormatVietnameseCurrency(total);
             decimal vat = total * 0.08m; // 8%
             txtVAT.Text = CurrencyFormatter.FormatVietnameseCurrency(vat);
-            txtChange.Text = CurrencyFormatter.FormatVietnameseCurrency(vat + total);
+            txtTotalPrice.Text = CurrencyFormatter.FormatVietnameseCurrency(vat + total);
         }
 
         public void ClearCartItems()
@@ -206,6 +213,7 @@ namespace pharmacy_sys.Views.POSForm
 
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!_isInitialized) return;
             FilterMedicines?.Invoke(this, EventArgs.Empty);
         }
 
@@ -223,10 +231,12 @@ namespace pharmacy_sys.Views.POSForm
             cbFilterPrice.DataSource = priceRanges;
             cbFilterPrice.DisplayMember = "Name";
             cbFilterPrice.SelectedIndex = 0;
+            _isInitialized = true;
         }
 
         private void cbFilterPrice_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!_isInitialized) return;
             FilterMedicines?.Invoke(this, EventArgs.Empty);
         }
 

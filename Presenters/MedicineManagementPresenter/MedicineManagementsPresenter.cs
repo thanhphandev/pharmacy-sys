@@ -1,6 +1,7 @@
 ﻿using pharmacy_sys.Models;
 using pharmacy_sys.Services.CategoryServices;
 using pharmacy_sys.Services.MedicineServices;
+using pharmacy_sys.Views.ConfirmPasswordForm;
 using pharmacy_sys.Views.MedicineForm;
 using pharmacy_sys.Views.UnitTypeForm;
 using System;
@@ -50,23 +51,37 @@ namespace pharmacy_sys.Presenters.MedicineManagementPresenter
         private void OnDeleteMedicine(object? sender, EventArgs e)
         {
             int selectedMedicine = _medicineManagementView.GetSelectedMedicineId();
-            if (selectedMedicine < 0)
+            if (selectedMedicine == 0)
             {
                 MessageBox.Show("Vui lòng chọn thuốc để xóa.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            if (UserSession.Role != UserRole.Admin)
+            {
+                MessageBox.Show("Bạn không đủ quyền hạn để thực hiện thao tác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            
             // ⚠️ Cảnh báo mạnh mẽ hơn
             var result = MessageBox.Show(
                 "⚠️ Hành động này sẽ xóa thuốc và toàn bộ các lô thuốc liên quan.\n\nBạn có chắc chắn muốn tiếp tục?",
                 "XÁC NHẬN XÓA DỮ LIỆU QUAN TRỌNG",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning,
-                MessageBoxDefaultButton.Button2 // default là "No"
+                MessageBoxDefaultButton.Button2
             );
 
             if (result == DialogResult.Yes)
             {
+                using var confirmForm = new ConfirmPasswordView();
+                confirmForm.ShowDialog();
+                if (!confirmForm.IsPasswordConfirmed)
+                {
+                    MessageBox.Show("Hủy thao tác vì chưa xác nhận mật khẩu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 try
                 {
                     _medicineService.DeleteMedicine(selectedMedicine);

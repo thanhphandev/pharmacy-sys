@@ -9,6 +9,6 @@ namespace pharmacy_sys.Services.POSServices
 {
     public interface IPOSService
     {
-        void PurchaseMedicine(int staffId, List<MedicineProductModel> medicineProducts, string? customerName);
+        void PurchaseMedicine(int staffId, List<MedicineProductModel> medicineProducts, decimal totalPrice,string? note);
     }
 }

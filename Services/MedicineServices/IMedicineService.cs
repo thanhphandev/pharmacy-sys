@@ -28,6 +28,10 @@ namespace pharmacy_sys.Services.MedicineServices
             decimal? minPrice = null,
             decimal? maxPrice = null,
             string? searchText = null);
-        void DeductMedicineStock(int medicineId, int quantity);
+        List<BatchUsage> DeductMedicineStock(int medicineId, int quantity);
+        int GetStockQuantityByMedicineCode(int medicineId);
+        void ReturnMedicineToStock(List<BatchUsage> usages);
+        void DeductSpecificBatches(List<BatchUsage> usages);
+
     }
 }

@@ -1,7 +1,9 @@
 ﻿using pharmacy_sys.Models;
 using pharmacy_sys.Presenters.CategoryPresenter;
 using pharmacy_sys.Repositories.CategoryRepositories;
+using pharmacy_sys.Repositories.LogRepositories;
 using pharmacy_sys.Services.CategoryServices;
+using pharmacy_sys.Services.LogServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +22,9 @@ namespace pharmacy_sys.Views.CategoryForm
         {
             InitializeComponent();
             ICategoryRepository categoryRepository = new CategoryRepository();
-            ICategoryService categoryService = new CategoryService(categoryRepository);
+            var logRepository = new LogRepository();
+            var logService = new LogService(logRepository);
+            ICategoryService categoryService = new CategoryService(categoryRepository, logService);
             new CategoryPresenter(this, categoryService);
         }
 

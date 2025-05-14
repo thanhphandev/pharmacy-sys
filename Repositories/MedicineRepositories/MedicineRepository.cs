@@ -91,7 +91,7 @@ namespace pharmacy_sys.Repositories.MedicineRepositories
                 Price = x.Medicine.Price,
                 MedicineImage = x.Medicine.Image,
                 Quantity = x.Quantity,
-                UnitTypeName = x.Medicine.UnitType?.Name
+                UnitTypeName = x.Medicine.UnitType?.Name ?? ""
             }).ToList();
         }
 
@@ -148,6 +148,22 @@ namespace pharmacy_sys.Repositories.MedicineRepositories
                 .Where(m => m.GroupId == groupId).ToList();
             return medicines;
         }
+
+        public int GetStockQuantityByMedicineCode(int medicineId)
+        {
+            using var context = new PharmacyDbContext();
+
+            var medicine = context.Medicines.FirstOrDefault(m => m.Id == medicineId);
+            if (medicine == null)
+                throw new Exception($"Không tìm thấy thuốc với mã: {medicineId}");
+
+            var totalQuantity = context.MedicineBatches
+                .Where(batch => batch.MedicineId == medicine.Id)
+                .Sum(batch => batch.Quantity);
+
+            return totalQuantity;
+        }
+
 
         public List<Medicine> SearchMedicineByNameOrCode(string searchText)
         {

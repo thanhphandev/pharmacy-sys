@@ -1,9 +1,19 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using pharmacy_sys.Models;
+using pharmacy_sys.Presenters.MainPresenter;
+using pharmacy_sys.Repositories.LogRepositories;
+using pharmacy_sys.Repositories.UserRepositories;
+using pharmacy_sys.Services.AuthServices;
+using pharmacy_sys.Services.LogServices;
+using pharmacy_sys.Views.BillForm;
 using pharmacy_sys.Views.CategoryForm;
+using pharmacy_sys.Views.DatabaseForm;
+using pharmacy_sys.Views.LoginForm;
+using pharmacy_sys.Views.LogsForm;
 using pharmacy_sys.Views.MedicineForm;
 using pharmacy_sys.Views.POSForm;
+using pharmacy_sys.Views.ReportForm;
 using pharmacy_sys.Views.SupplierForm;
 using pharmacy_sys.Views.UtilsForm;
 using System;
@@ -18,21 +28,44 @@ using System.Windows.Forms;
 
 namespace pharmacy_sys.Views.MainForm
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IMainView
     {
         private System.Windows.Forms.Timer timerClock;
+
+        public event EventHandler LogOut;
+
         public MainForm()
         {
             InitializeComponent();
+            var logRepository = new LogRepository();
+            var userRepository = new UserRepository();
+
+            var logService = new LogService(logRepository);
+
+            var authService = new AuthService(userRepository, logService);
+
+            new MainPresenter(this, authService);
             CheckDatabaseConnection();
+            // check admin permission
+            if (UserSession.Role != UserRole.Admin)
+            {
+                btnLogs.Visible = false;
+                btnMedicines.Visible = false;
+                btnCategory.Visible = false;
+                btnSuppliers.Visible = false;
+            }
+
+            txtFullName.Text = $"Xin chào {(UserSession.Role == UserRole.Admin ? "Quản trị viên" : "Nhân viên")} - {UserSession.FullName}";
+
             timerClock = new System.Windows.Forms.Timer
             {
                 Interval = 1000 // mỗi 1 giây
             };
             timerClock.Tick += TimerClock_Tick;
             timerClock.Start();
-            MedicineManagementView medicineForm = new MedicineManagementView();
-            AddControls(medicineForm);
+            IntroductionView introductionView = new IntroductionView();
+            AddControls(introductionView);
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -104,6 +137,11 @@ namespace pharmacy_sys.Views.MainForm
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn thoát không?", "Xác nhận thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
             Application.Exit();
         }
 
@@ -111,11 +149,6 @@ namespace pharmacy_sys.Views.MainForm
         {
             AddMedicineView addMedicineView = new AddMedicineView();
             addMedicineView.ShowDialog();
-        }
-
-        private void btnGuides_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnIntroductionView_Click(object sender, EventArgs e)
@@ -128,6 +161,53 @@ namespace pharmacy_sys.Views.MainForm
         {
             POSView posView = new POSView();
             AddControls(posView);
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            LogOut?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnBills_Click(object sender, EventArgs e)
+        {
+            BillsView billsView = new BillsView();
+            AddControls(billsView);
+        }
+
+        private void btnContact_Click(object sender, EventArgs e)
+        {
+            ContactView contactView = new ContactView();
+            AddControls(contactView);
+        }
+
+        public void ShowLoginPage()
+        {
+            LoginView loginView = new LoginView();
+            loginView.Show();
+            this.Hide();
+        }
+
+        private void btnLogs_Click(object sender, EventArgs e)
+        {
+            LogsView logsView = new LogsView();
+            AddControls(logsView);
+        }
+
+        private void btnSalesReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSales_Click(object sender, EventArgs e)
+        {
+            SalesReportView salesReport = new SalesReportView();
+            AddControls(salesReport);
+        }
+
+        private void btnDatabase_Click(object sender, EventArgs e)
+        {
+            DatabaseView databaseView = new DatabaseView();
+            databaseView.ShowDialog();
         }
     }
 }

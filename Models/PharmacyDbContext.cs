@@ -19,6 +19,7 @@ namespace pharmacy_sys.Models
         public DbSet<MedicineBatch> MedicineBatches { get; set; } = null!;
         public DbSet<Bill> Bills { get; set; } = null!;
         public DbSet<BillDetail> BillDetails { get; set; } = null!;
+        public DbSet<Log> Logs { get; set; } = null!;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

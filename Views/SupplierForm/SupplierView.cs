@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using pharmacy_sys.Models;
 using pharmacy_sys.Presenters.SupplierPresenter;
+using pharmacy_sys.Repositories.LogRepositories;
 using pharmacy_sys.Repositories.SupplierRepositories;
+using pharmacy_sys.Services.LogServices;
 using pharmacy_sys.Services.SupplierServices;
 using pharmacy_sys.Views.BaseForm;
 
@@ -17,14 +19,14 @@ namespace pharmacy_sys.Views.SupplierForm
 {
     public partial class SupplierView : BaseManagementForm, ISupplierView
     {
-        private readonly ISupplierView _view;
-
 
         public SupplierView()
         {
             InitializeComponent();
             var repository = new SupplierRepository();
-            var service = new SupplierService(repository);
+            var logRepository = new LogRepository();
+            var logService = new LogService(logRepository);
+            var service = new SupplierService(repository, logService);
             new SupplierPresenter(this, service);
         }
 

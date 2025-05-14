@@ -1,8 +1,10 @@
 ﻿using pharmacy_sys.Models;
 using pharmacy_sys.Presenters.MedicineManagementPresenter;
 using pharmacy_sys.Repositories.CategoryRepositories;
+using pharmacy_sys.Repositories.LogRepositories;
 using pharmacy_sys.Repositories.MedicineRepositories;
 using pharmacy_sys.Services.CategoryServices;
+using pharmacy_sys.Services.LogServices;
 using pharmacy_sys.Services.MedicineServices;
 using pharmacy_sys.Views.BaseForm;
 using pharmacy_sys.Views.UnitTypeForm;
@@ -27,8 +29,12 @@ namespace pharmacy_sys.Views.MedicineForm
             var medicineRepository = new MedicineRepository();
             var medicineBatchRepository = new MedicineBatchRepository();
             var categoryRepository = new CategoryRepository();
-            var medicineService = new MedicineService(medicineRepository, medicineBatchRepository);
-            var categoryService = new CategoryService(categoryRepository);
+            var logRepository = new LogRepository();
+
+            var logService = new LogService(logRepository);
+            var medicineService = new MedicineService(medicineRepository, medicineBatchRepository, logService);
+
+            var categoryService = new CategoryService(categoryRepository, logService);
             new MedicineManagementsPresenter(this, medicineService, categoryService);
         }
 

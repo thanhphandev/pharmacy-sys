@@ -33,8 +33,9 @@ namespace pharmacy_sys.Presenters.POSPresenter
 
         private void OnPurchaseMedicines(object? sender, EventArgs e)
         {
-            int currentStaffId = 1; // ID của nhân viên hiện tại, có thể thay đổi sau này
-            string CustomerName = _view.CustomerName;
+            int currentStaffId = UserSession.Id;
+            decimal totalPrice = _view.TotalPrice;
+            string Note = _view.Note;
             List<MedicineProductModel> cartItems = _view.GetCartItems();
             if (cartItems.Count == 0)
             {
@@ -43,10 +44,16 @@ namespace pharmacy_sys.Presenters.POSPresenter
             }
             try
             {
-                _posService.PurchaseMedicine(1, cartItems, CustomerName); // 1 là ID của nhân viên hiện tại, có thể thay đổi sau này
+                var result = MessageBox.Show("Bạn có chắc chắn muốn thanh toán không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(result == DialogResult.No)
+                {
+                    return;
+                }
+                _posService.PurchaseMedicine(currentStaffId, cartItems, totalPrice, Note);
                 
                 MessageBox.Show("Thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _view.ClearCartItems();
+                _view.Note = string.Empty;
                 LoadData();
             }
             catch (Exception ex)

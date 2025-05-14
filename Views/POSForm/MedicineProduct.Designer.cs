@@ -33,7 +33,6 @@
             btnChoose = new Button();
             pbMedicineImage = new PictureBox();
             lbQuantity = new Label();
-            btnView = new Button();
             lbCode = new Label();
             ((System.ComponentModel.ISupportInitialize)pbMedicineImage).BeginInit();
             SuspendLayout();
@@ -68,10 +67,10 @@
             btnChoose.FlatStyle = FlatStyle.Flat;
             btnChoose.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnChoose.ForeColor = Color.White;
-            btnChoose.Location = new Point(5, 170);
+            btnChoose.Location = new Point(4, 170);
             btnChoose.Margin = new Padding(4);
             btnChoose.Name = "btnChoose";
-            btnChoose.Size = new Size(63, 30);
+            btnChoose.Size = new Size(139, 30);
             btnChoose.TabIndex = 3;
             btnChoose.Text = "Chọn";
             btnChoose.UseVisualStyleBackColor = false;
@@ -96,21 +95,6 @@
             lbQuantity.TabIndex = 4;
             lbQuantity.Text = "1";
             // 
-            // btnView
-            // 
-            btnView.BackColor = SystemColors.ButtonFace;
-            btnView.FlatAppearance.BorderColor = Color.FromArgb(26, 81, 162);
-            btnView.FlatStyle = FlatStyle.Flat;
-            btnView.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnView.ForeColor = Color.Black;
-            btnView.Location = new Point(76, 170);
-            btnView.Margin = new Padding(4);
-            btnView.Name = "btnView";
-            btnView.Size = new Size(63, 30);
-            btnView.TabIndex = 3;
-            btnView.Text = "Xem";
-            btnView.UseVisualStyleBackColor = false;
-            // 
             // lbCode
             // 
             lbCode.AutoSize = true;
@@ -128,7 +112,6 @@
             BackColor = Color.White;
             Controls.Add(lbCode);
             Controls.Add(lbQuantity);
-            Controls.Add(btnView);
             Controls.Add(btnChoose);
             Controls.Add(lbPrice);
             Controls.Add(lbName);
@@ -150,7 +133,6 @@
         private System.Windows.Forms.Label lbPrice;
         private System.Windows.Forms.Button btnChoose;
         private System.Windows.Forms.Label lbQuantity;
-        private Button btnView;
         private Label lbCode;
     }
 }

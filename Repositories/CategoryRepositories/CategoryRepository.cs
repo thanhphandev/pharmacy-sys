@@ -9,7 +9,7 @@ namespace pharmacy_sys.Repositories.CategoryRepositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public void AddCategory(string categoryName, string? description)
+        public int AddCategory(string categoryName, string? description)
         {
             using var context = new PharmacyDbContext();
             var category = new MedicineGroup
@@ -19,6 +19,7 @@ namespace pharmacy_sys.Repositories.CategoryRepositories
             };
             context.MedicineGroups.Add(category);
             context.SaveChanges();
+            return category.Id;
         }
 
         public void DeleteCategory(int id)
@@ -42,6 +43,17 @@ namespace pharmacy_sys.Repositories.CategoryRepositories
         {
             using var context = new PharmacyDbContext();
             return context.MedicineGroups.ToList();
+        }
+
+        public MedicineGroup GetCategoryById(int id)
+        {
+            using var context = new PharmacyDbContext();
+            var category = context.MedicineGroups.Find(id);
+            if (category == null)
+            {
+                throw new Exception($"Không tìm thấy danh mục với ID = {id}");
+            }
+            return category;
         }
 
         public void UpdateCategory(int id, string name, string? description)

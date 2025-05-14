@@ -150,6 +150,7 @@
             // 
             // feature1Icon
             // 
+            feature1Icon.Image = Properties.Resources.cross;
             feature1Icon.Location = new Point(15, 15);
             feature1Icon.Name = "feature1Icon";
             feature1Icon.Size = new Size(48, 48);
@@ -192,6 +193,7 @@
             // 
             // feature2Icon
             // 
+            feature2Icon.Image = Properties.Resources.lending;
             feature2Icon.Location = new Point(15, 15);
             feature2Icon.Name = "feature2Icon";
             feature2Icon.Size = new Size(48, 48);
@@ -234,6 +236,7 @@
             // 
             // feature3Icon
             // 
+            feature3Icon.Image = Properties.Resources.helpdesk;
             feature3Icon.Location = new Point(15, 15);
             feature3Icon.Name = "feature3Icon";
             feature3Icon.Size = new Size(48, 48);
@@ -276,6 +279,7 @@
             // 
             // feature4Icon
             // 
+            feature4Icon.Image = Properties.Resources.report;
             feature4Icon.Location = new Point(15, 15);
             feature4Icon.Name = "feature4Icon";
             feature4Icon.Size = new Size(48, 48);

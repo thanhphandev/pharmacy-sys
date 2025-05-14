@@ -14,6 +14,8 @@ namespace pharmacy_sys.Repositories.MedicineRepositories
         void UpdateBatch(int id, MedicineBatch medicineBatch);
         void DeleteBatch(int id);
         MedicineBatch GetMedicineBatchById(int id);
-        void DeductMedicineStock(int medicineId, int quantity);
+        List<BatchUsage> DeductMedicineStock(int medicineId, int quantity);
+        void ReturnMedicineToStock(List<BatchUsage> usages);
+        void DeductSpecificBatches(List<BatchUsage> usages);
     }
 }

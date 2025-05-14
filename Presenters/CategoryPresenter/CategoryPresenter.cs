@@ -1,4 +1,5 @@
-﻿using pharmacy_sys.Services.CategoryServices;
+﻿using pharmacy_sys.Models;
+using pharmacy_sys.Services.CategoryServices;
 using pharmacy_sys.Views.CategoryForm;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,11 @@ namespace pharmacy_sys.Presenters.CategoryPresenter
             if (selectedCategory == null)
             {
                 MessageBox.Show("Vui lòng chọn danh mục để xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (UserSession.Role != UserRole.Admin)
+            {
+                MessageBox.Show("Bạn không đủ quyền hạn để thực hiện thao tác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             try

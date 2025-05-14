@@ -13,7 +13,8 @@ namespace pharmacy_sys.Views.POSForm
         int CategoryId { get; set; }
         decimal? MinPrice { get; }
         decimal? MaxPrice { get; }
-        string CustomerName { get; set; }
+        string Note { get; set; }
+        decimal TotalPrice { get; set; }
 
         void LoadMedicineGroups(List<MedicineGroup> medicineGroups);
         void LoadMedicineProducts(List<MedicineProductModel> medicineProducts);

@@ -67,36 +67,73 @@ namespace pharmacy_sys.Repositories.MedicineRepositories
             context.SaveChanges();
         }
 
-        public void DeductMedicineStock(int medicineId, int quantity)
+        public List<BatchUsage> DeductMedicineStock(int medicineId, int quantity)
         {
             using var context = new PharmacyDbContext();
 
             var batches = context.MedicineBatches
                 .Where(b => b.MedicineId == medicineId && b.Quantity > 0)
-                .OrderBy(b => b.ExpirationDate) // FEFO
+                .OrderBy(b => b.ExpirationDate)
                 .ToList();
 
             int remaining = quantity;
+            var usages = new List<BatchUsage>();
 
             foreach (var batch in batches)
             {
                 if (remaining <= 0) break;
 
-                if (batch.Quantity >= remaining)
+                int deducted = Math.Min(batch.Quantity, remaining);
+                batch.Quantity -= deducted;
+                remaining -= deducted;
+
+                usages.Add(new BatchUsage
                 {
-                    batch.Quantity -= remaining;
-                    remaining = 0;
-                }
-                else
-                {
-                    remaining -= batch.Quantity;
-                    batch.Quantity = 0;
-                }
+                    BatchId = batch.Id,
+                    Quantity = deducted
+                });
             }
 
             if (remaining > 0)
             {
-                throw new InvalidOperationException("Không đủ thuốc trong kho để xử lý giao dịch.");
+                throw new InvalidOperationException("Không đủ thuốc trong kho để trừ.");
+            }
+
+            context.SaveChanges();
+            return usages;
+        }
+
+        public void ReturnMedicineToStock(List<BatchUsage> usages)
+        {
+            using var context = new PharmacyDbContext();
+
+            foreach (var usage in usages)
+            {
+                var batch = context.MedicineBatches.FirstOrDefault(b => b.Id == usage.BatchId);
+                if (batch == null)
+                    throw new ArgumentException($"Không tìm thấy lô có ID: {usage.BatchId}");
+
+                batch.Quantity += usage.Quantity;
+            }
+
+            context.SaveChanges();
+        }
+
+
+        public void DeductSpecificBatches(List<BatchUsage> usages)
+        {
+            using var context = new PharmacyDbContext();
+
+            foreach (var usage in usages)
+            {
+                var batch = context.MedicineBatches.FirstOrDefault(b => b.Id == usage.BatchId);
+                if (batch == null)
+                    throw new ArgumentException($"Không tìm thấy lô có ID: {usage.BatchId}");
+
+                if (batch.Quantity < usage.Quantity)
+                    throw new InvalidOperationException($"Lô thuốc {usage.BatchId} không đủ số lượng. Còn lại: {batch.Quantity}, cần: {usage.Quantity}");
+
+                batch.Quantity -= usage.Quantity;
             }
 
             context.SaveChanges();

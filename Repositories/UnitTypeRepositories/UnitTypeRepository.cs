@@ -9,12 +9,18 @@ namespace pharmacy_sys.Repositories.UnitTypeRepositories
 {
     public class UnitTypeRepository : IUnitTypeRepository
     {
-        public void AddUnitType(string unitType)
+        public int AddUnitType(string unitType)
         {
             using var context = new PharmacyDbContext();
-            context.UnitTypes.Add(new UnitType { Name = unitType });
+            var newUnitType = new UnitType { Name = unitType };
+
+            context.UnitTypes.Add(newUnitType);
+
             context.SaveChanges();
+
+            return newUnitType.Id;
         }
+
 
         public void DeleteUnitType(int id)
         {
@@ -32,6 +38,17 @@ namespace pharmacy_sys.Repositories.UnitTypeRepositories
         {
             using var context = new PharmacyDbContext();
             return context.UnitTypes.ToList();
+        }
+
+        public UnitType GetUnitTypeById(int id)
+        {
+            using var context = new PharmacyDbContext();
+            var unitType = context.UnitTypes.Find(id);
+            if (unitType == null)
+            {
+                throw new InvalidOperationException($"Không tìm thấy loại đơn vị với ID = {id}");
+            }
+            return unitType;
         }
 
         public void UpdateUnitType(int id, string newName)

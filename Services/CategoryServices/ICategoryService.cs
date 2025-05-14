@@ -13,5 +13,6 @@ namespace pharmacy_sys.Services.CategoryServices
         List<MedicineGroup> GetAllCategories();
         void DeleteCategory(int id);
         void UpdateCategory(int id, string name, string? description);
+
     }
 }

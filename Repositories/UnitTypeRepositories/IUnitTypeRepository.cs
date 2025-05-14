@@ -9,9 +9,10 @@ namespace pharmacy_sys.Repositories.UnitTypeRepositories
 {
     public interface IUnitTypeRepository
     {
-        void AddUnitType(string unitType);
+        int AddUnitType(string unitType);
         void DeleteUnitType(int id);
         List<UnitType> GetAllUnitTypes();
         void UpdateUnitType(int id, string newName);
+        UnitType GetUnitTypeById(int id);
     }
 }
