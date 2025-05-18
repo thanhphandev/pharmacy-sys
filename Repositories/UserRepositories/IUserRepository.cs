@@ -11,6 +11,7 @@ namespace pharmacy_sys.Repositories.UserRepositories
     {
         void CreateUser(User user);
         User? GetUserByEmail(string email);
+        User UpdateUser(User user);
 
     }
 }

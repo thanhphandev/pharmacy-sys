@@ -31,10 +31,10 @@ namespace pharmacy_sys.Views.MainForm
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            btnContact = new ToolStripMenuItem();
+            btnInfoSoftware = new ToolStripMenuItem();
             hóaĐơnToolStripMenuItem = new ToolStripMenuItem();
             btnIntroductionView = new ToolStripMenuItem();
-            báoCáoTàiChínhToolStripMenuItem = new ToolStripMenuItem();
+            btnInventory = new ToolStripMenuItem();
             btnSales = new ToolStripMenuItem();
             btnReport = new ToolStripMenuItem();
             btnPOSView = new ToolStripMenuItem();
@@ -47,7 +47,7 @@ namespace pharmacy_sys.Views.MainForm
             btnExit = new ToolStripMenuItem();
             btnLogout = new ToolStripMenuItem();
             btnDatabase = new ToolStripMenuItem();
-            btnChangePass = new ToolStripMenuItem();
+            btnChangePassword = new ToolStripMenuItem();
             tàiKhoảnToolStripMenuItem = new ToolStripMenuItem();
             btnLogs = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
@@ -61,16 +61,16 @@ namespace pharmacy_sys.Views.MainForm
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // btnContact
+            // btnInfoSoftware
             // 
-            btnContact.Name = "btnContact";
-            btnContact.Size = new Size(186, 22);
-            btnContact.Text = "Thông tin phần mềm";
-            btnContact.Click += btnContact_Click;
+            btnInfoSoftware.Name = "btnInfoSoftware";
+            btnInfoSoftware.Size = new Size(186, 22);
+            btnInfoSoftware.Text = "Thông tin phần mềm";
+            btnInfoSoftware.Click += btnInfoSoftware_Click;
             // 
             // hóaĐơnToolStripMenuItem
             // 
-            hóaĐơnToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnIntroductionView, btnContact });
+            hóaĐơnToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnIntroductionView, btnInfoSoftware });
             hóaĐơnToolStripMenuItem.Image = Properties.Resources.question__1_;
             hóaĐơnToolStripMenuItem.Name = "hóaĐơnToolStripMenuItem";
             hóaĐơnToolStripMenuItem.Size = new Size(78, 20);
@@ -83,22 +83,23 @@ namespace pharmacy_sys.Views.MainForm
             btnIntroductionView.Text = "Giới thiệu";
             btnIntroductionView.Click += btnIntroductionView_Click;
             // 
-            // báoCáoTàiChínhToolStripMenuItem
+            // btnInventory
             // 
-            báoCáoTàiChínhToolStripMenuItem.Name = "báoCáoTàiChínhToolStripMenuItem";
-            báoCáoTàiChínhToolStripMenuItem.Size = new Size(124, 22);
-            báoCáoTàiChínhToolStripMenuItem.Text = "Tồn kho";
+            btnInventory.Name = "btnInventory";
+            btnInventory.Size = new Size(180, 22);
+            btnInventory.Text = "Tồn kho";
+            btnInventory.Click += btnInventory_Click;
             // 
             // btnSales
             // 
             btnSales.Name = "btnSales";
-            btnSales.Size = new Size(124, 22);
+            btnSales.Size = new Size(180, 22);
             btnSales.Text = "Doanh số";
             btnSales.Click += btnSales_Click;
             // 
             // btnReport
             // 
-            btnReport.DropDownItems.AddRange(new ToolStripItem[] { btnSales, báoCáoTàiChínhToolStripMenuItem });
+            btnReport.DropDownItems.AddRange(new ToolStripItem[] { btnSales, btnInventory });
             btnReport.Image = Properties.Resources.add_task;
             btnReport.Name = "btnReport";
             btnReport.Size = new Size(77, 20);
@@ -107,7 +108,7 @@ namespace pharmacy_sys.Views.MainForm
             // btnPOSView
             // 
             btnPOSView.Name = "btnPOSView";
-            btnPOSView.Size = new Size(124, 22);
+            btnPOSView.Size = new Size(180, 22);
             btnPOSView.Text = "Bán hàng";
             btnPOSView.Click += btnPOSView_Click;
             // 
@@ -177,15 +178,16 @@ namespace pharmacy_sys.Views.MainForm
             btnDatabase.Text = "Sao lưu/ Phục hồi dữ liệu";
             btnDatabase.Click += btnDatabase_Click;
             // 
-            // btnChangePass
+            // btnChangePassword
             // 
-            btnChangePass.Name = "btnChangePass";
-            btnChangePass.Size = new Size(207, 22);
-            btnChangePass.Text = "Đổi mật khẩu";
+            btnChangePassword.Name = "btnChangePassword";
+            btnChangePassword.Size = new Size(207, 22);
+            btnChangePassword.Text = "Đổi mật khẩu";
+            btnChangePassword.Click += btnChangePassword_Click;
             // 
             // tàiKhoảnToolStripMenuItem
             // 
-            tàiKhoảnToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnChangePass, btnLogs, btnDatabase, btnLogout, btnExit });
+            tàiKhoảnToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnChangePassword, btnLogs, btnDatabase, btnLogout, btnExit });
             tàiKhoảnToolStripMenuItem.ForeColor = SystemColors.ControlText;
             tàiKhoảnToolStripMenuItem.Image = Properties.Resources.user;
             tàiKhoảnToolStripMenuItem.Name = "tàiKhoảnToolStripMenuItem";
@@ -276,10 +278,10 @@ namespace pharmacy_sys.Views.MainForm
         }
 
         #endregion
-        private ToolStripMenuItem btnContact;
+        private ToolStripMenuItem btnInfoSoftware;
         private ToolStripMenuItem hóaĐơnToolStripMenuItem;
         private ToolStripMenuItem btnIntroductionView;
-        private ToolStripMenuItem báoCáoTàiChínhToolStripMenuItem;
+        private ToolStripMenuItem btnInventory;
         private ToolStripMenuItem btnSales;
         private ToolStripMenuItem btnReport;
         private ToolStripMenuItem btnPOSView;
@@ -291,7 +293,7 @@ namespace pharmacy_sys.Views.MainForm
         private ToolStripMenuItem btnExit;
         private ToolStripMenuItem btnLogout;
         private ToolStripMenuItem btnDatabase;
-        private ToolStripMenuItem btnChangePass;
+        private ToolStripMenuItem btnChangePassword;
         private ToolStripMenuItem tàiKhoảnToolStripMenuItem;
         private MenuStrip menuStrip1;
         private Panel panelMain;

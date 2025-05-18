@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace pharmacy_sys.Views.UtilsForm
 {
-    public partial class ContactView : Form
+    public partial class InfoSoftware : Form
     {
-        public ContactView()
+        public InfoSoftware()
         {
             InitializeComponent();
+        }
+
+        private void lblVersion_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

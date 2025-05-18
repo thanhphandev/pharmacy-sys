@@ -26,6 +26,12 @@ namespace pharmacy_sys.Presenters.CategoryPresenter
 
         private void OnDeleteCategory(object? sender, EventArgs e)
         {
+            if (UserSession.Role != UserRole.Admin)
+            {
+                MessageBox.Show("Bạn không đủ quyền hạn để thực hiện thao tác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var selectedCategory = _view.GetSelectedCategory();
             if (selectedCategory == null)
             {
@@ -95,6 +101,12 @@ namespace pharmacy_sys.Presenters.CategoryPresenter
 
         private void OnAddCategory(object? sender, EventArgs e)
         {
+            if (UserSession.Role != UserRole.Admin)
+            {
+                MessageBox.Show("Bạn không đủ quyền hạn để thực hiện thao tác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 if (string.IsNullOrEmpty(_view.CategoryName))

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace pharmacy_sys.Models
         // Navigation properties
         public virtual UnitType UnitType { get; set; } = null!;
         public virtual MedicineGroup Group { get; set; } = null!;
-
+        public virtual ObservableCollectionListSource<MedicineBatch> MedicineBatches { get; set; } = new();
         public string CategoryName => Group?.Name ?? "No Category";
         public string UnitTypeName => UnitType?.Name ?? "No UnitType";
     }

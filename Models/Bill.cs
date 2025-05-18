@@ -14,6 +14,8 @@ namespace pharmacy_sys.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public int StaffId { get; set; }
         public string? Note { get; set; }
+        public decimal GrandAmount { get; set; } = 0;
+        public decimal VAT { get; set; } = 0;
         public decimal TotalPrice { get; set; } = 0;
 
         public string? StaffName => Staff?.FullName;

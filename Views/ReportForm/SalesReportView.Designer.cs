@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             chartSales = new System.Windows.Forms.DataVisualization.Charting.Chart();
             btnRefresh = new Button();
             btnFilter = new Button();
@@ -44,30 +44,32 @@
             colTotalRevenue = new DataGridViewTextBoxColumn();
             colTotalBills = new DataGridViewTextBoxColumn();
             colQuantitySold = new DataGridViewTextBoxColumn();
+            btnPrintReport = new Button();
             ((System.ComponentModel.ISupportInitialize)chartSales).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvSalesReport).BeginInit();
             SuspendLayout();
             // 
             // chartSales
             // 
-            chartArea1.Name = "ChartArea1";
-            chartSales.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            chartSales.Legends.Add(legend1);
-            chartSales.Location = new Point(25, 85);
+            chartArea2.Name = "ChartArea1";
+            chartSales.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chartSales.Legends.Add(legend2);
+            chartSales.Location = new Point(25, 80);
             chartSales.Name = "chartSales";
             chartSales.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chartSales.Series.Add(series1);
-            chartSales.Size = new Size(863, 153);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Revenue";
+            series2.YValuesPerPoint = 2;
+            chartSales.Series.Add(series2);
+            chartSales.Size = new Size(863, 158);
             chartSales.TabIndex = 0;
             chartSales.Text = "chartSales";
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(813, 50);
+            btnRefresh.Location = new Point(703, 47);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(75, 23);
             btnRefresh.TabIndex = 19;
@@ -172,6 +174,16 @@
             colQuantitySold.ReadOnly = true;
             colQuantitySold.Width = 240;
             // 
+            // btnPrintReport
+            // 
+            btnPrintReport.Location = new Point(813, 47);
+            btnPrintReport.Name = "btnPrintReport";
+            btnPrintReport.Size = new Size(75, 23);
+            btnPrintReport.TabIndex = 19;
+            btnPrintReport.Text = "In báo cáo";
+            btnPrintReport.UseVisualStyleBackColor = true;
+            btnPrintReport.Click += btnPrintReport_Click;
+            // 
             // SalesReportView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -179,6 +191,7 @@
             ClientSize = new Size(981, 450);
             Controls.Add(dgvSalesReport);
             Controls.Add(cbGroupBy);
+            Controls.Add(btnPrintReport);
             Controls.Add(btnRefresh);
             Controls.Add(btnFilter);
             Controls.Add(label3);
@@ -210,5 +223,6 @@
         private DataGridViewTextBoxColumn colTotalRevenue;
         private DataGridViewTextBoxColumn colTotalBills;
         private DataGridViewTextBoxColumn colQuantitySold;
+        private Button btnPrintReport;
     }
 }

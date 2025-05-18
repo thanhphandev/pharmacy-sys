@@ -37,6 +37,9 @@ namespace pharmacy_sys.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal>("GrandAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
@@ -44,6 +47,9 @@ namespace pharmacy_sys.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("VAT")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -363,7 +369,7 @@ namespace pharmacy_sys.Migrations
             modelBuilder.Entity("pharmacy_sys.Models.MedicineBatch", b =>
                 {
                     b.HasOne("pharmacy_sys.Models.Medicine", "Medicine")
-                        .WithMany()
+                        .WithMany("MedicineBatches")
                         .HasForeignKey("MedicineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -382,6 +388,11 @@ namespace pharmacy_sys.Migrations
             modelBuilder.Entity("pharmacy_sys.Models.Bill", b =>
                 {
                     b.Navigation("BillDetails");
+                });
+
+            modelBuilder.Entity("pharmacy_sys.Models.Medicine", b =>
+                {
+                    b.Navigation("MedicineBatches");
                 });
 
             modelBuilder.Entity("pharmacy_sys.Models.MedicineGroup", b =>

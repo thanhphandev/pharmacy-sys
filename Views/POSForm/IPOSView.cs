@@ -15,6 +15,7 @@ namespace pharmacy_sys.Views.POSForm
         decimal? MaxPrice { get; }
         string Note { get; set; }
         decimal TotalPrice { get; set; }
+        decimal GrandAmount { get; set; }
 
         void LoadMedicineGroups(List<MedicineGroup> medicineGroups);
         void LoadMedicineProducts(List<MedicineProductModel> medicineProducts);

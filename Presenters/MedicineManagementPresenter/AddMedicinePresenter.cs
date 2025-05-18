@@ -42,8 +42,24 @@ namespace pharmacy_sys.Presenters.MedicineManagementPresenter
 
         private void OnUpdateMedicineBatchEvent(object? sender, EventArgs e)
         {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn cập nhật lô thuốc này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+            if (_addMedicineView.MedicineBatchId <= 0)
+            {
+                MessageBox.Show("Vui lòng chọn một lô thuốc để sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
+                if (UserSession.Role != UserRole.Admin)
+                {
+                    MessageBox.Show("Bạn không đủ quyền hạn để thực hiện thao tác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 int supplierId = _addMedicineView.SupplierId;
                 int quantity = _addMedicineView.Quantity;
                 DateTime expirationDate = _addMedicineView.ExpirationDate;
@@ -86,6 +102,12 @@ namespace pharmacy_sys.Presenters.MedicineManagementPresenter
 
         private void OnAddMedicineEvent(object? sender, EventArgs e)
         {
+            if (UserSession.Role != UserRole.Admin)
+            {
+                MessageBox.Show("Bạn không đủ quyền hạn để thực hiện thao tác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string code = _addMedicineView.Code;
             string medicineName = _addMedicineView.MedicineName;
             decimal price = _addMedicineView.Price;

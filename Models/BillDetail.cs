@@ -20,6 +20,7 @@ namespace pharmacy_sys.Models
         public decimal Amount => Quantity * Price;
         public string? MedicineCode => Medicine?.Code;
         public string? MedicineName => Medicine?.Name;
+        public string? UnitType => Medicine.UnitType.Name;
         public string PriceFormatted => CurrencyFormatter.FormatVietnameseCurrency(Price);
         public string AmountFormatted => CurrencyFormatter.FormatVietnameseCurrency(Amount);
 

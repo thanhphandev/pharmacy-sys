@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             dgvSuppliers = new DataGridView();
+            btnExportData = new Button();
+            btnImportData = new Button();
             SupplierId = new DataGridViewTextBoxColumn();
             SupplierName = new DataGridViewTextBoxColumn();
             Phone = new DataGridViewTextBoxColumn();
             Address = new DataGridViewTextBoxColumn();
             dgvEdit = new DataGridViewImageColumn();
             dgvDelete = new DataGridViewImageColumn();
-            btnExportData = new Button();
-            btnImportData = new Button();
             ((System.ComponentModel.ISupportInitialize)btnAdd).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnRefresh).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvSuppliers).BeginInit();
@@ -67,9 +67,29 @@
             dgvSuppliers.Location = new Point(81, 105);
             dgvSuppliers.Name = "dgvSuppliers";
             dgvSuppliers.ReadOnly = true;
-            dgvSuppliers.Size = new Size(713, 270);
+            dgvSuppliers.Size = new Size(843, 322);
             dgvSuppliers.TabIndex = 4;
             dgvSuppliers.CellClick += dgvSuppliers_CellClick;
+            // 
+            // btnExportData
+            // 
+            btnExportData.Location = new Point(831, 66);
+            btnExportData.Name = "btnExportData";
+            btnExportData.Size = new Size(93, 23);
+            btnExportData.TabIndex = 5;
+            btnExportData.Text = "Xuất dữ liệu";
+            btnExportData.UseVisualStyleBackColor = true;
+            btnExportData.Click += btnExportData_Click;
+            // 
+            // btnImportData
+            // 
+            btnImportData.Location = new Point(831, 37);
+            btnImportData.Name = "btnImportData";
+            btnImportData.Size = new Size(93, 23);
+            btnImportData.TabIndex = 5;
+            btnImportData.Text = "Nhập dữ liệu";
+            btnImportData.UseVisualStyleBackColor = true;
+            btnImportData.Click += btnImportData_Click;
             // 
             // SupplierId
             // 
@@ -84,7 +104,7 @@
             SupplierName.HeaderText = "Tên";
             SupplierName.Name = "SupplierName";
             SupplierName.ReadOnly = true;
-            SupplierName.Width = 120;
+            SupplierName.Width = 250;
             // 
             // Phone
             // 
@@ -118,31 +138,11 @@
             dgvDelete.ReadOnly = true;
             dgvDelete.Width = 30;
             // 
-            // btnExportData
-            // 
-            btnExportData.Location = new Point(673, 63);
-            btnExportData.Name = "btnExportData";
-            btnExportData.Size = new Size(93, 23);
-            btnExportData.TabIndex = 5;
-            btnExportData.Text = "Xuất dữ liệu";
-            btnExportData.UseVisualStyleBackColor = true;
-            btnExportData.Click += btnExportData_Click;
-            // 
-            // btnImportData
-            // 
-            btnImportData.Location = new Point(673, 34);
-            btnImportData.Name = "btnImportData";
-            btnImportData.Size = new Size(93, 23);
-            btnImportData.TabIndex = 5;
-            btnImportData.Text = "Nhập dữ liệu";
-            btnImportData.UseVisualStyleBackColor = true;
-            btnImportData.Click += btnImportData_Click;
-            // 
             // SupplierView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(895, 439);
+            ClientSize = new Size(1033, 439);
             Controls.Add(btnImportData);
             Controls.Add(btnExportData);
             Controls.Add(dgvSuppliers);
@@ -166,13 +166,13 @@
         #endregion
 
         private DataGridView dgvSuppliers;
+        private Button btnExportData;
+        private Button btnImportData;
         private DataGridViewTextBoxColumn SupplierId;
         private DataGridViewTextBoxColumn SupplierName;
         private DataGridViewTextBoxColumn Phone;
         private DataGridViewTextBoxColumn Address;
         private DataGridViewImageColumn dgvEdit;
         private DataGridViewImageColumn dgvDelete;
-        private Button btnExportData;
-        private Button btnImportData;
     }
 }

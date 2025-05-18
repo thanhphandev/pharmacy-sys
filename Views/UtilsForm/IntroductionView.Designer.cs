@@ -136,7 +136,7 @@
             feature1Description.Name = "feature1Description";
             feature1Description.Size = new Size(350, 100);
             feature1Description.TabIndex = 2;
-            feature1Description.Text = "Theo dõi tồn kho, quản lý hạn sử dụng và tự động cảnh báo thuốc sắp hết hàng. Hỗ trợ mã vạch, QR code và phân loại thuốc theo nhiều tiêu chí.";
+            feature1Description.Text = "Theo dõi tồn kho, quản lý hạn sử dụng và tự động cảnh báo thuốc sắp hết hàng. Hỗ trợ nhập thuốc tự động và phân loại thuốc theo nhiều tiêu chí.";
             // 
             // feature1Title
             // 
@@ -146,7 +146,7 @@
             feature1Title.Name = "feature1Title";
             feature1Title.Size = new Size(350, 25);
             feature1Title.TabIndex = 1;
-            feature1Title.Text = "Quản lý thuốc toàn diện";
+            feature1Title.Text = "Quản lý thuốc chính xác";
             // 
             // feature1Icon
             // 
@@ -179,7 +179,7 @@
             feature2Description.Name = "feature2Description";
             feature2Description.Size = new Size(350, 100);
             feature2Description.TabIndex = 2;
-            feature2Description.Text = "Giao diện bán hàng thông minh, xử lý nhanh các giao dịch, hỗ trợ nhiều phương thức thanh toán và tự động xuất hóa đơn điện tử đúng quy định.";
+            feature2Description.Text = "Giao diện bán hàng thông minh, tiện lợi dễ sử dụng\r\n, xử lý nhanh các giao dịchvà tự động xuất hóa đơn điện tử đúng quy định.";
             // 
             // feature2Title
             // 
@@ -222,7 +222,7 @@
             feature3Description.Name = "feature3Description";
             feature3Description.Size = new Size(350, 100);
             feature3Description.TabIndex = 2;
-            feature3Description.Text = "Cơ sở dữ liệu khách hàng chi tiết, lịch sử mua thuốc, hệ thống thẻ thành viên và tích điểm. Quản lý thông tin nhà cung cấp và lịch sử đặt hàng.";
+            feature3Description.Text = "Cơ sở dữ liệu nhà cung cấp chi tiết, lịch sử hóa đơn. Quản lý thông tin nhà cung cấp và lịch sử đặt hàng.";
             // 
             // feature3Title
             // 

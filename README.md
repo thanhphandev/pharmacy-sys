@@ -1,105 +1,129 @@
 ﻿# 💊 Pharmacy Management System | Hệ thống Quản lý Nhà thuốc
 
-**Pharmacy Management System** is a comprehensive desktop application tailored for pharmacies, aiming to streamline operations and enhance business efficiency. The system integrates key modules such as medicine inventory, warehouse tracking, sales management, and user access control.  
-**Hệ thống Quản lý Nhà thuốc** là một ứng dụng desktop toàn diện dành cho hiệu thuốc, với mục tiêu tự động hóa quy trình vận hành và nâng cao hiệu quả kinh doanh. Hệ thống tích hợp các phân hệ chính như quản lý thuốc, theo dõi kho, quản lý bán hàng và phân quyền người dùng.
+**Pharmacy Management System** là phần mềm desktop được thiết kế dành riêng cho các nhà thuốc, giúp tối ưu hóa hoạt động vận hành như quản lý kho thuốc, hóa đơn, nhà cung cấp, người dùng, báo cáo doanh thu và nhiều hơn nữa.  
+Ứng dụng mang lại trải nghiệm thân thiện, bảo mật và hiệu quả cho người sử dụng, hỗ trợ theo dõi toàn diện các hoạt động của hiệu thuốc.
 
 ---
 
-## 🛠 Technologies Used | Công nghệ Sử dụng
+## 🧩 Tính năng Chính
 
-- **WinForms (C#)** – for building a rich and responsive desktop UI  
-- **SQL Server** – robust relational database for structured data storage  
-- **Entity Framework (ORM)** – for efficient data access and abstraction
+### 1. 🏢 Quản lý Nhà cung cấp
+- Thêm, sửa, xóa thông tin nhà cung cấp
+- Nhập/xuất dữ liệu nhà cung cấp, hỗ trợ ghi đè dữ liệu
+- Tìm kiếm nhà cung cấp theo từ khóa
 
-> ✅ The use of **WinForms** ensures rapid development with native Windows performance, while **SQL Server** provides a reliable backend for data consistency and integrity.  
-> ✅ Việc sử dụng **WinForms** giúp phát triển nhanh chóng với hiệu suất mạnh mẽ trên Windows, kết hợp với **SQL Server** để đảm bảo tính toàn vẹn và nhất quán dữ liệu.
+### 2. 💊 Quản lý Thuốc & Danh mục
+- Thêm, sửa, xóa thuốc và đơn vị tính
+- Tự động điền thông tin thuốc nếu đã tồn tại trong hệ thống
+- Quản lý chi tiết từng **lô thuốc** (số lượng, ngày sản xuất, hạn sử dụng)
+- Phân loại theo danh mục, nhóm thuốc
+- Tìm kiếm theo tên, mã thuốc, danh mục
+- Theo dõi số lượng thuốc trong kho theo thời gian thực
+
+### 3. 🧾 Quản lý Hóa đơn
+- Tạo, xem, chỉnh sửa hóa đơn bán thuốc
+- Giao diện bán hàng kiểu POS: tìm thuốc, thêm vào giỏ hàng, thay đổi số lượng
+- Tự động tính tổng tiền, in hóa đơn
+- Lưu trữ lịch sử hóa đơn để tra cứu lại
+
+### 4. 👥 Quản lý Người dùng
+- Đăng ký, đăng nhập, đăng xuất người dùng
+- Phân quyền theo vai trò (quản trị viên, nhân viên, v.v.)
+- Đổi mật khẩu, xác thực 2 bước (2FA) cho các thao tác quan trọng
+- Nhật ký hoạt động người dùng (log hệ thống)
+
+### 5. 📦 Quản lý Dữ liệu
+- Chức năng **backup** và **khôi phục (restore)** dữ liệu
+- Bảo vệ dữ liệu người dùng và giảm thiểu rủi ro mất mát
+
+### 6. 📈 Báo cáo & Thống kê
+- Báo cáo doanh thu theo ngày / tháng / năm
+- Thống kê chi tiết tồn kho, thuốc sắp hết hạn, đã hết hàng
+- Giao diện báo cáo trực quan
+
+### 7. 🖥️ Giao diện POS hiện đại
+- Bán thuốc nhanh chóng, thân thiện người dùng
+- Hiển thị hình ảnh thuốc, thao tác giỏ hàng trực quan
+- Tự động tính tiền và hỗ trợ in hóa đơn ngay lập tức
+
+### 8. 🙋‍♂️ Hỗ trợ người dùng
+- Tích hợp trung tâm hỗ trợ / trợ giúp ngay trong phần mềm
+- Cung cấp thông tin liên hệ để bảo trì, cập nhật phần mềm
+
+### 9. 🔒 Bảo mật & An toàn Dữ liệu
+- Mã hóa mật khẩu người dùng
+- Sử dụng Entity Framework để ngăn chặn lỗi SQL Injection
+- Kiểm soát truy cập theo vai trò, xác thực 2FA
+- Kiểm tra và ghi log truy cập hệ thống
+
+### 10. ℹ️ Thông tin phần mềm
+- Hiển thị phiên bản phần mềm, ngày cập nhật
+- Thông tin hệ thống: tình trạng hoạt động, ngày giờ hệ thống
 
 ---
 
-## 🧱 Project Architecture | Kiến trúc Dự án
+## 🛠 Công nghệ Sử dụng
 
-The application follows the **MVP Pattern (Model - View - Presenter)**, a proven architectural pattern ideal for Windows Forms. This structure ensures separation of concerns, testability, and maintainability.  
-Ứng dụng áp dụng mô hình kiến trúc **MVP (Model - View - Presenter)**, phù hợp với WinForms để đảm bảo tính rõ ràng trong thiết kế, dễ kiểm thử và bảo trì.
+| Thành phần              | Mô tả                                                                 |
+|------------------------|-----------------------------------------------------------------------|
+| **WinForms (C#)**      | Giao diện người dùng thân thiện, dễ phát triển trên nền Windows      |
+| **SQL Server**         | Hệ quản trị cơ sở dữ liệu mạnh mẽ, hỗ trợ lưu trữ và bảo mật dữ liệu |
+| **Entity Framework**   | ORM giúp truy xuất dữ liệu hiệu quả, dễ bảo trì, hạn chế lỗi SQL      |
+| **MVP Architecture**   | Phân tách rõ Model, View, Presenter giúp mã sạch, dễ test, mở rộng    |
 
-### 🔹 Model
-- Business logic and data processing  
-- Xử lý nghiệp vụ và quản lý dữ liệu
+---
 
-### 🔹 View
-- UI layer that interacts with end-users  
-- Giao diện người dùng và tương tác người dùng
+## 🧱 Kiến trúc Dự án: MVP (Model - View - Presenter)
 
-### 🔹 Presenter
-- Mediator between View and Model, handles input logic  
-- Trung gian giữa View và Model, xử lý logic tương tác
 
-#### 🧩 Model Sub-layers | Phân lớp Model
-- **Services**: Implements business rules and workflows  
-- **Repositories**: Abstracts direct database operations via Entity Framework
+Dự án được tổ chức theo mô hình **MVP Pattern** (Model-View-Presenter), một kiến trúc phần mềm hiệu quả cho phép tách biệt rõ ràng giữa phần logic và giao diện người dùng. Mô hình này đặc biệt hiệu quả với công nghệ Winform C#. Mô hình MVP giúp dễ dàng phát triển và duy trì mã nguồn mà không bị phụ thuộc vào giao diện cụ thể. Các thành phần chính trong mô hình MVP bao gồm:
+
+1. **Model**: Chịu trách nhiệm quản lý dữ liệu và logic ứng dụng, bao gồm xử lý thông tin và quản lý trạng thái.
+2. **View**: Phần giao diện người dùng, nơi hiển thị dữ liệu và nhận tương tác từ người dùng.
+3. **Presenter**: Kết nối giữa Model và View, xử lý các yêu cầu từ View và cập nhật Model, đảm bảo logic ứng dụng hoạt động một cách chính xác.
+
+Để nâng cao khả năng bảo trì và mở rộng cho dự án, Model được chia thành hai phần:
+1. **Service**: Chứa các phương thức xử lý logic nghiệp vụ và tương tác với cơ sở dữ liệu thông qua các repository.
+2. **Repositories**: Cung cấp các phương thức truy xuất dữ liệu từ cơ sở dữ liệu.
 
 ![MVP Pattern](https://i.ibb.co/G0ZFkcB/mvp-pattern.png)
+---
+
+## 🚀 Lợi ích nổi bật
+
+- ✅ Quản lý nhà thuốc đầy đủ từ A-Z
+- ✅ Giao diện bán thuốc POS trực quan, nhanh chóng
+- ✅ Báo cáo rõ ràng, hỗ trợ quyết định kinh doanh
+- ✅ Bảo mật mạnh, hỗ trợ 2FA
+- ✅ Kiến trúc dễ mở rộng và bảo trì
 
 ---
 
-## ⚙️ Core Features | Tính năng Chính
+## 💡 Kế hoạch Phát triển trong Tương Lai
 
-### 1. 🔐 Authentication & Authorization | Xác thực & Phân quyền
-- **User login & registration** | Đăng nhập và đăng ký người dùng
-- **Role-based access control (RBAC)** | Phân quyền theo vai trò
-- **Forgot password** (in development) | Quên mật khẩu (đang phát triển)
-- **Secure logout mechanism** | Cơ chế đăng xuất an toàn
-
-### 2. 💊 Medicine Management | Quản lý Thuốc
-- Add new medicines with image upload  
-- Thêm thuốc mới kèm ảnh đại diện  
-- Edit or remove medicine records  
-- Cập nhật và xóa thuốc  
-- Categorize by type, manufacturer, price  
-- Phân loại theo loại, nhà sản xuất, giá
-
-### 3. 🛒 Sales Module | Quản lý Bán hàng
-- Select and sell medicines  
-- Chọn sản phẩm và xử lý bán thuốc  
-- Auto calculation of total and invoice generation  
-- Tự động tính tiền và in hóa đơn  
-- Real-time inventory update  
-- Cập nhật kho theo thời gian thực  
-- Revenue and sales statistics  
-- Thống kê doanh thu và lịch sử bán hàng
-
-### 4. 🏪 Inventory & Stock Control | Quản lý Kho hàng
-- Manage purchase invoices  
-- Nhập hóa đơn nhập thuốc  
-- Monitor expiration dates and stock quantity  
-- Theo dõi thuốc hết hạn, tồn kho  
-- Search and filter by criteria  
-- Tìm kiếm theo mã, tên, loại thuốc
+- [ ] Tích hợp thanh toán điện tử
+- [ ] Giao diện tối (Dark Mode)
+- [ ] Đồng bộ dữ liệu qua đám mây (cloud sync)
+- [ ] Tính năng nhắc lịch nhập thuốc
 
 ---
 
-## 🚧 Features in Development | Các chức năng đang phát triển
+## 📎 Thông tin Dự án
 
-- Password reset functionality | Khôi phục mật khẩu
-- Detailed financial reports | Báo cáo tài chính chi tiết
-- Enhanced auditing and logs | Ghi log hệ thống và lịch sử thay đổi
-- UI/UX improvements | Cải thiện trải nghiệm người dùng
-
----
-
-## 📌 Highlights | Điểm nổi bật
-
-- Clean MVP structure for maintainability  
-- Kiến trúc MVP giúp dễ mở rộng và bảo trì
-- Integrated with SQL Server for high-volume data  
-- Tích hợp SQL Server cho khả năng xử lý dữ liệu lớn
-- Native desktop experience via WinForms  
-- Trải nghiệm người dùng mượt mà trên môi trường Windows
+- **Tên phần mềm**: Pharmacy Management System
+- **Phiên bản**: 1.0.0
+- **Ngày phát hành**: 2025-05
+- **Nhà phát triển**: Phan Văn Thành
 
 ---
 
-## 📞 Contact | Liên hệ
+## 📞 Liên hệ Hỗ trợ
 
-For any inquiries, contributions, or bug reports, feel free to reach out to the development team.  
-Mọi thắc mắc, đóng góp hoặc báo lỗi, vui lòng liên hệ với nhóm phát triển.
+Mọi góp ý, báo lỗi hoặc yêu cầu tính năng mới, vui lòng liên hệ:
+https://t.me/thanhphandev
 
 ---
+
+> ✅ *Phần mềm không chỉ giúp quản lý hiệu quả, mà còn là trợ thủ đắc lực trong việc nâng cao năng suất và sự chuyên nghiệp của nhà thuốc.*
+
+

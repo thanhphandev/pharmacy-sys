@@ -11,11 +11,12 @@ namespace pharmacy_sys.Repositories.POSRepositories
 {
     public class BillRepository : IBillRepository
     {
-        public void CreateBill(Bill bill)
+        public Bill CreateBill(Bill bill)
         {
             using var context = new PharmacyDbContext();
             context.Bills.Add(bill);
             context.SaveChanges();
+            return bill;
         }
 
         public void DeleteBill(int id)
@@ -36,15 +37,24 @@ namespace pharmacy_sys.Repositories.POSRepositories
             return context.Bills.Include(b => b.Staff).ToList();
         }
 
-        public Bill? GetBillWithDetails(int billId)
+        public Bill GetBillWithDetails(int billId)
         {
             using var context = new PharmacyDbContext();
-            return context.Bills
+            var billWithDetails = context.Bills
                 .Include(b => b.BillDetails)
-                .ThenInclude(d => d.Medicine)
+                    .ThenInclude(d => d.Medicine)
+                        .ThenInclude(m => m.UnitType)
                 .Include(b => b.Staff)
                 .FirstOrDefault(b => b.Id == billId);
+
+            if (billWithDetails == null)
+            {
+                throw new ArgumentException("Không tìm thấy hóa đơn này.");
+            }
+
+            return billWithDetails;
         }
+
 
 
         public List<Bill> SearchBillByCode(string code)
@@ -56,7 +66,7 @@ namespace pharmacy_sys.Repositories.POSRepositories
                 .ToList();
         }
 
-        public void UpdateBill(int id, List<BillDetail> updatedDetails)
+        public void UpdateBill(int id, List<BillDetail> updatedDetails, string note, DateTime createdAt)
         {
             using var context = new PharmacyDbContext();
             var bill = context.Bills
@@ -72,6 +82,8 @@ namespace pharmacy_sys.Repositories.POSRepositories
             {
                 totalAmount += detail.Quantity * detail.Price;
             }
+            bill.CreatedAt = createdAt;
+            bill.Note = note;
             bill.TotalPrice = totalAmount + (totalAmount * 0.08m);
             context.BillDetails.RemoveRange(bill.BillDetails);
 

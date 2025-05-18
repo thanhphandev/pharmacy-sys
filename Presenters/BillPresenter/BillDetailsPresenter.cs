@@ -1,5 +1,8 @@
-﻿using pharmacy_sys.Services.BillServices;
+﻿using pharmacy_sys.Models;
+using pharmacy_sys.Services.BillServices;
+using pharmacy_sys.Services.PrintInvoiceServices;
 using pharmacy_sys.Views.BillForm;
+using pharmacy_sys.Views.ConfirmPasswordForm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +15,67 @@ namespace pharmacy_sys.Presenters.BillPresenter
     {
         private readonly IBillDetailsView _view;
         private readonly IBillService _billService;
+        private readonly IPrintInvoiceService _printInvoiceService;
 
-        public BillDetailsPresenter(IBillDetailsView view, IBillService billService)
+        public BillDetailsPresenter(IBillDetailsView view, IBillService billService, IPrintInvoiceService printInvoiceService)
         {
             _view = view;
             _billService = billService;
+            _printInvoiceService = printInvoiceService;
             _view.LoadBillDetails += OnLoadBillDetails;
             _view.UpdateBillEvent += OnUpdateBillEvent;
+            _view.PrintBillEvent += OnPrintBillEvent;
+        }
+
+        private void OnPrintBillEvent(object? sender, EventArgs e)
+        {
+            try
+            {
+                if (_view.BillId <= 0)
+                {
+                    MessageBox.Show("Không có hóa đơn nào để in.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var result = MessageBox.Show("Bạn có chắc chắn muốn in hóa đơn này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
+                _printInvoiceService.PrintInvoice(_view.BillId);
+                MessageBox.Show("In hóa đơn thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra khi in hóa đơn: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void OnUpdateBillEvent(object? sender, EventArgs e)
         {
+            if(UserSession.Role != UserRole.Admin)
+            {
+                MessageBox.Show("Bạn không có quyền cập nhật hóa đơn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using var confirmForm = new ConfirmPasswordView();
+            confirmForm.ShowDialog();
+            if (!confirmForm.IsPasswordConfirmed)
+            {
+                MessageBox.Show("Hủy thao tác vì chưa xác nhận mật khẩu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var note = _view.Note;
+            DateTime createdAt = _view.CreatedAt;
+
+            if (createdAt > DateTime.Now)
+            {
+                MessageBox.Show("Ngày tạo hóa đơn không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var billDetails = _view.GetCurrentBillDetails();
 
             if (billDetails == null || billDetails.Count == 0)
@@ -39,7 +92,7 @@ namespace pharmacy_sys.Presenters.BillPresenter
 
             try
             {
-                _billService.UpdateBill(_view.BillId, billDetails);
+                _billService.UpdateBill(_view.BillId, billDetails, note, createdAt);
                 MessageBox.Show("Cập nhật hóa đơn thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (ArgumentException ex)

@@ -11,9 +11,9 @@ namespace pharmacy_sys.Services.BillServices
     {
         List<Bill> GetAllBills();
         List<Bill> SearchBills(string searchText);
-        Bill? GetBillWithDetails(int billId);
+        Bill GetBillWithDetails(int billId);
         void DeleteBill(int id);
-        void UpdateBill(int id, List<BillDetail> billDetail);
+        void UpdateBill(int id, List<BillDetail> billDetail, string note, DateTime createdAt);
         List<Bill> GetSalesReport(DateTime startDate, DateTime endDate);
     }
 }

@@ -27,5 +27,17 @@ namespace pharmacy_sys.Repositories.UserRepositories
             return user;
         }
 
+        public User UpdateUser(User user)
+        {
+            using var context = new PharmacyDbContext();
+            var existingUser = context.Users.Find(user.Id);
+            if(existingUser == null)
+                throw new InvalidOperationException("Không tìm thấy người dùng này.");
+            existingUser.FullName = user.FullName;
+            existingUser.Phone = user.Phone;
+            existingUser.Password = user.Password;
+            context.SaveChanges();
+            return existingUser;
+        }
     }
 }

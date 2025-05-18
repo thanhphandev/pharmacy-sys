@@ -17,5 +17,8 @@ namespace pharmacy_sys.Repositories.MedicineRepositories
         List<BatchUsage> DeductMedicineStock(int medicineId, int quantity);
         void ReturnMedicineToStock(List<BatchUsage> usages);
         void DeductSpecificBatches(List<BatchUsage> usages);
+        List<MedicineReportItem> GetExpiringMedicines(int days = 30);
+        List<MedicineReportItem> GetLowStockMedicines();
+        StockSummary GetStockSummary();
     }
 }

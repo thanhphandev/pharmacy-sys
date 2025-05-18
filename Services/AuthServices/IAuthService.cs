@@ -12,6 +12,6 @@ namespace pharmacy_sys.Services.AuthServices
         void Login(string email, string password);
         void Logout();
         bool VerifyUserByConfirmPassword(string email, string password);
-
+        void ChangePassword(string email, string oldPassword, string newPassword);
     }
 }

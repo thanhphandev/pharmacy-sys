@@ -14,6 +14,7 @@ namespace pharmacy_sys
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+            QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 
             if (CanConnectToDatabase())
             {

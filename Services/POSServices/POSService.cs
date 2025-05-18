@@ -4,6 +4,9 @@ using pharmacy_sys.Repositories.LogRepositories;
 using pharmacy_sys.Repositories.POSRepositories;
 using pharmacy_sys.Services.LogServices;
 using pharmacy_sys.Services.MedicineServices;
+using pharmacy_sys.Services.PrintInvoiceServices;
+using pharmacy_sys.Views.ReportForm;
+using QuestPDF.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +29,7 @@ namespace pharmacy_sys.Services.POSServices
             _logService = logService;
         }
 
-        public void PurchaseMedicine(int staffId, List<MedicineProductModel> medicineProducts, decimal totalPrice, string? note)
+        public Bill PurchaseMedicine(int staffId, List<MedicineProductModel> medicineProducts, decimal totalAmount, decimal totalPrice, string? note)
         {
             if (medicineProducts == null || medicineProducts.Count <= 0)
                 throw new ArgumentException("Danh sách thuốc không được rỗng.");
@@ -37,6 +40,8 @@ namespace pharmacy_sys.Services.POSServices
                 StaffId = staffId,
                 Code = code,
                 Note = note,
+                VAT = 0.08m, // 8% VAT,
+                GrandAmount = totalAmount,
                 CreatedAt = DateTime.Now,
                 TotalPrice = totalPrice,
                 BillDetails = new()
@@ -72,8 +77,7 @@ namespace pharmacy_sys.Services.POSServices
                 targetId: bill.Id.ToString(),
                 message: $"Đã tạo hóa đơn mới với mã {bill.Code} với tổng giá trị {CurrencyFormatter.FormatVietnameseCurrency(totalPrice)}."
             );
+            return bill;
         }
-
-
     }
 }

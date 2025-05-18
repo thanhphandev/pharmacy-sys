@@ -46,7 +46,6 @@
             dtpEndDate = new DateTimePicker();
             label = new Label();
             label3 = new Label();
-            btnExportData = new Button();
             btnFilter = new Button();
             btnRefresh = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLogs).BeginInit();
@@ -187,16 +186,6 @@
             label3.TabIndex = 12;
             label3.Text = "Từ";
             // 
-            // btnExportData
-            // 
-            btnExportData.Location = new Point(1007, 44);
-            btnExportData.Name = "btnExportData";
-            btnExportData.Size = new Size(128, 23);
-            btnExportData.TabIndex = 13;
-            btnExportData.Text = "Xuất thông tin";
-            btnExportData.UseVisualStyleBackColor = true;
-            btnExportData.Click += btnExportData_Click;
-            // 
             // btnFilter
             // 
             btnFilter.Location = new Point(611, 38);
@@ -224,7 +213,6 @@
             ClientSize = new Size(1168, 572);
             Controls.Add(btnRefresh);
             Controls.Add(btnFilter);
-            Controls.Add(btnExportData);
             Controls.Add(label3);
             Controls.Add(dtpEndDate);
             Controls.Add(dtpStartDate);
@@ -260,7 +248,6 @@
         private DateTimePicker dtpEndDate;
         private Label label;
         private Label label3;
-        private Button btnExportData;
         private Button btnFilter;
         private Button btnRefresh;
     }

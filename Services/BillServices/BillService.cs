@@ -45,12 +45,14 @@ namespace pharmacy_sys.Services.BillServices
             return bills;
         }
 
-        public Bill? GetBillWithDetails(int id)
+        public Bill GetBillWithDetails(int id)
         {
             if(id <= 0)
                 throw new ArgumentException("Mã hóa đơn không hợp lệ.");
 
             var bill = _billRepository.GetBillWithDetails(id);
+            if (bill == null)
+                throw new ArgumentException("Không tìm thấy hóa đơn này.");
 
             return bill;
         }
@@ -67,7 +69,7 @@ namespace pharmacy_sys.Services.BillServices
             return bills;
         }
 
-        public void UpdateBill(int id, List<BillDetail> newDetails)
+        public void UpdateBill(int id, List<BillDetail> newDetails, string note, DateTime createdAt)
         {
             if (id <= 0)
                 throw new ArgumentException("Mã hóa đơn không hợp lệ.");
@@ -102,7 +104,7 @@ namespace pharmacy_sys.Services.BillServices
                 detail.BatchUsageJson = JsonSerializer.Serialize(usages);
             }
 
-            _billRepository.UpdateBill(id, newDetails);
+            _billRepository.UpdateBill(id, newDetails, note, createdAt);
             var oldLogData = oldBill.BillDetails.Select(d => new
             {
                 d.MedicineId,

@@ -22,6 +22,7 @@ namespace pharmacy_sys.Services.AuthServices
             _logService = logService;
         }
 
+
         public void Login(string email, string password)
         {
             email = email.Trim().ToLower();
@@ -63,6 +64,33 @@ namespace pharmacy_sys.Services.AuthServices
                 message: $"{UserSession.FullName} đã đăng xuất hệ thống."
             );
             UserSession.ClearSession();          
+        }
+
+        public void ChangePassword(string email, string oldPassword, string newPassword)
+        {
+            if(string.IsNullOrEmpty(email) || string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword))
+                throw new ArgumentException("Vui lòng nhập đầy đủ thông tin!");
+            
+            email = email.Trim().ToLower();
+            oldPassword = oldPassword.Trim();
+            newPassword = newPassword.Trim();
+            
+            var user = _userRepository.GetUserByEmail(email);
+            if (user == null)
+                throw new InvalidOperationException("Người dùng không tồn tại!");
+            
+            if (!VerifyPassword(oldPassword, user.Password))
+                throw new InvalidOperationException("Sai mật khẩu! vui lòng thử lại");
+            
+            user.Password = HashPassword(newPassword);
+            _userRepository.UpdateUser(user);
+            _logService.CreateLogAction(
+                staffId: user.Id,
+                action: "CHANGE_PASSWORD",
+                targetTable: "Users",
+                targetId: user.Id.ToString(),
+                message: $"{user.FullName} đã thay đổi mật khẩu."
+            );
         }
 
         public void SignUp(string email, string password, string fullName, string phone)

@@ -45,7 +45,6 @@
             txtPrice = new TextBox();
             label6 = new Label();
             label8 = new Label();
-            btnExport = new Button();
             btnUpdate = new Button();
             label7 = new Label();
             dgvMedicineBatches = new DataGridView();
@@ -227,18 +226,9 @@
             label8.TabIndex = 1;
             label8.Text = "Đơn giá";
             // 
-            // btnExport
-            // 
-            btnExport.Location = new Point(832, 54);
-            btnExport.Name = "btnExport";
-            btnExport.Size = new Size(96, 23);
-            btnExport.TabIndex = 13;
-            btnExport.Text = "Xuất thông tin";
-            btnExport.UseVisualStyleBackColor = true;
-            // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(832, 83);
+            btnUpdate.Location = new Point(818, 54);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(75, 23);
             btnUpdate.TabIndex = 14;
@@ -334,7 +324,6 @@
             Controls.Add(dgvMedicineBatches);
             Controls.Add(label7);
             Controls.Add(btnUpdate);
-            Controls.Add(btnExport);
             Controls.Add(groupBox1);
             Name = "MedicineDetailsView";
             Text = "Chi tiết thuốc";
@@ -366,7 +355,6 @@
         private TextBox txtPrice;
         private Label label6;
         private Label label8;
-        private Button btnExport;
         private Button btnUpdate;
         private Label label7;
         private DataGridView dgvMedicineBatches;

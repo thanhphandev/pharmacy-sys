@@ -1,8 +1,12 @@
-﻿using pharmacy_sys.Models;
+﻿using pharmacy_sys.Common;
+using pharmacy_sys.Models;
 using pharmacy_sys.Services.CategoryServices;
 using pharmacy_sys.Services.MedicineServices;
 using pharmacy_sys.Services.POSServices;
+using pharmacy_sys.Services.PrintInvoiceServices;
 using pharmacy_sys.Views.POSForm;
+using pharmacy_sys.Views.ReportForm;
+using QuestPDF.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +21,15 @@ namespace pharmacy_sys.Presenters.POSPresenter
         private readonly IMedicineService _medicineService;
         private readonly ICategoryService _categoryService;
         private readonly IPOSService _posService;
+        private readonly IPrintInvoiceService _printInvoiceService;
 
-        public POSPresenter(IPOSView view, IMedicineService medicineService, ICategoryService categoryService, IPOSService posService)
+        public POSPresenter(IPOSView view, IMedicineService medicineService, ICategoryService categoryService, IPOSService posService, IPrintInvoiceService printInvoiceService)
         {
             _view = view;
             _medicineService = medicineService;
             _categoryService = categoryService;
             _posService = posService;
+            _printInvoiceService = printInvoiceService;
             _view.LoadMedicineProductsEvent += OnLoadMedicineProducts;
             _view.SearchMedicines += OnFilterOrSearchMedicines;
             _view.FilterMedicines += OnFilterOrSearchMedicines;
@@ -34,7 +40,9 @@ namespace pharmacy_sys.Presenters.POSPresenter
         private void OnPurchaseMedicines(object? sender, EventArgs e)
         {
             int currentStaffId = UserSession.Id;
+            decimal grandAmount = _view.GrandAmount;
             decimal totalPrice = _view.TotalPrice;
+
             string Note = _view.Note;
             List<MedicineProductModel> cartItems = _view.GetCartItems();
             if (cartItems.Count == 0)
@@ -49,9 +57,14 @@ namespace pharmacy_sys.Presenters.POSPresenter
                 {
                     return;
                 }
-                _posService.PurchaseMedicine(currentStaffId, cartItems, totalPrice, Note);
+                Bill bill = _posService.PurchaseMedicine(currentStaffId, cartItems, grandAmount, totalPrice, Note);
                 
-                MessageBox.Show("Thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var askPrint = MessageBox.Show("Thanh toán thành công! Bạn có muốn xuất hóa đơn không?.", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (askPrint == DialogResult.Yes)
+                {
+                    _printInvoiceService.PrintInvoice(bill.Id);
+                }
+
                 _view.ClearCartItems();
                 _view.Note = string.Empty;
                 LoadData();

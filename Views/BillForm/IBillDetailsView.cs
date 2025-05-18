@@ -19,6 +19,7 @@ namespace pharmacy_sys.Views.BillForm
         List<BillDetail> GetCurrentBillDetails();
         event EventHandler LoadBillDetails;
         event EventHandler UpdateBillEvent;
+        event EventHandler PrintBillEvent;
 
     }
 }

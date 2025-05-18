@@ -40,6 +40,16 @@ namespace pharmacy_sys.Presenters.MedicineManagementPresenter
 
         private void OnUpdateMedicineBatchEvent(object? sender, EventArgs e)
         {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn cập nhật lô thuốc này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+            if (UserSession.Role != UserRole.Admin)
+            {
+                MessageBox.Show("Bạn không đủ quyền hạn để thực hiện thao tác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 int selectedBatchId = _view.GetSelectedMedicineBatchId();
@@ -91,6 +101,11 @@ namespace pharmacy_sys.Presenters.MedicineManagementPresenter
 
         private void OnDeleteMedicineBatchEvent(object? sender, EventArgs e)
         {
+            if (UserSession.Role != UserRole.Admin)
+            {
+                MessageBox.Show("Bạn không đủ quyền hạn để thực hiện thao tác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 int selectedBatchId = _view.GetSelectedMedicineBatchId();
@@ -113,8 +128,19 @@ namespace pharmacy_sys.Presenters.MedicineManagementPresenter
 
         private void OnUpdateMedicineEvent(object? sender, EventArgs e)
         {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn cập nhật thuốc này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
             try
             {
+                if (UserSession.Role != UserRole.Admin)
+                {
+                    MessageBox.Show("Bạn không đủ quyền hạn để thực hiện thao tác.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var medicine = new Medicine
                 {
                     Id = _medicineId,

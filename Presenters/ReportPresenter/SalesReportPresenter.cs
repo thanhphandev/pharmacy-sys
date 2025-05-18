@@ -1,6 +1,9 @@
 ﻿using pharmacy_sys.Models;
 using pharmacy_sys.Services.BillServices;
+using pharmacy_sys.Services.InventoryReportServices;
+using pharmacy_sys.Services.PrintReportServices;
 using pharmacy_sys.Views.ReportForm;
+using QuestPDF.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +22,32 @@ namespace pharmacy_sys.Presenters.ReportPresenter
             _billService = billService;
             _view.LoadReport += OnLoadReport;
             _view.RefreshReport += OnRefreshReport;
+            _view.PrintReport += OnPrintReport;
+        }
+
+        private void OnPrintReport(object? sender, EventArgs e)
+        {
+            var bills = _billService.GetSalesReport(_view.StartDate, _view.EndDate);
+            if (bills.Count <= 0)
+            {
+                MessageBox.Show("Không có hóa đơn nào trong khoảng thời gian này.");
+            }
+            var groupBy = _view.GroupBy;
+            var groupedData = GroupData(bills, groupBy);
+
+            using var memoryStream = new MemoryStream();
+            var document = new SalesReportDocument(groupedData, groupBy);
+            document.GeneratePdf(memoryStream);
+
+            var fileName = $"Sales_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+            var filePath = Path.Combine(Path.GetTempPath(), fileName);
+            File.WriteAllBytes(filePath, memoryStream.ToArray());
+
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = filePath,
+                UseShellExecute = true
+            });
         }
 
         private void OnRefreshReport(object? sender, EventArgs e)

@@ -8,6 +8,7 @@ using pharmacy_sys.Services.AuthServices;
 using pharmacy_sys.Services.LogServices;
 using pharmacy_sys.Views.BillForm;
 using pharmacy_sys.Views.CategoryForm;
+using pharmacy_sys.Views.ChangePasswordForm;
 using pharmacy_sys.Views.DatabaseForm;
 using pharmacy_sys.Views.LoginForm;
 using pharmacy_sys.Views.LogsForm;
@@ -50,6 +51,7 @@ namespace pharmacy_sys.Views.MainForm
             if (UserSession.Role != UserRole.Admin)
             {
                 btnLogs.Visible = false;
+                btnDatabase.Visible = false;
                 btnMedicines.Visible = false;
                 btnCategory.Visible = false;
                 btnSuppliers.Visible = false;
@@ -174,12 +176,6 @@ namespace pharmacy_sys.Views.MainForm
             AddControls(billsView);
         }
 
-        private void btnContact_Click(object sender, EventArgs e)
-        {
-            ContactView contactView = new ContactView();
-            AddControls(contactView);
-        }
-
         public void ShowLoginPage()
         {
             LoginView loginView = new LoginView();
@@ -193,11 +189,6 @@ namespace pharmacy_sys.Views.MainForm
             AddControls(logsView);
         }
 
-        private void btnSalesReport_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSales_Click(object sender, EventArgs e)
         {
             SalesReportView salesReport = new SalesReportView();
@@ -208,6 +199,24 @@ namespace pharmacy_sys.Views.MainForm
         {
             DatabaseView databaseView = new DatabaseView();
             databaseView.ShowDialog();
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            ChangePasswordView changePasswordView = new ChangePasswordView();
+            changePasswordView.ShowDialog();
+        }
+
+        private void btnInfoSoftware_Click(object sender, EventArgs e)
+        {
+            InfoSoftware infoSoftware = new InfoSoftware();
+            AddControls(infoSoftware);
+        }
+
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            InventoryView inventoryView = new InventoryView();
+            AddControls(inventoryView);
         }
     }
 }

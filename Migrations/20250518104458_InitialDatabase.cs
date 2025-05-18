@@ -112,6 +112,8 @@ namespace pharmacy_sys.Migrations
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StaffId = table.Column<int>(type: "int", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GrandAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    VAT = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>

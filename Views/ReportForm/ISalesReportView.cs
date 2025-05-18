@@ -17,6 +17,8 @@ namespace pharmacy_sys.Views.ReportForm
         //event EventHandler GenerateReport;
         event EventHandler LoadReport;
         event EventHandler RefreshReport;
+        event EventHandler PrintReport;
+
         void DisplaySalesReport(List<SalesReport> salesReports);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DocumentFormat.OpenXml.InkML;
+using Microsoft.EntityFrameworkCore;
 using pharmacy_sys.Models;
 using System;
 using System.Collections.Generic;
@@ -70,9 +71,10 @@ namespace pharmacy_sys.Repositories.MedicineRepositories
         public List<BatchUsage> DeductMedicineStock(int medicineId, int quantity)
         {
             using var context = new PharmacyDbContext();
-
+            // only get batches that are not expired and have quantity > 0
+            var today = DateTime.Today;
             var batches = context.MedicineBatches
-                .Where(b => b.MedicineId == medicineId && b.Quantity > 0)
+                .Where(b => b.MedicineId == medicineId && b.Quantity > 0 && b.ExpirationDate >= today)
                 .OrderBy(b => b.ExpirationDate)
                 .ToList();
 
@@ -139,5 +141,65 @@ namespace pharmacy_sys.Repositories.MedicineRepositories
             context.SaveChanges();
         }
 
+        public List<MedicineReportItem> GetExpiringMedicines(int days = 30)
+        {
+            using var context = new PharmacyDbContext();
+            var thresholdDate = DateTime.Now.AddDays(days);
+
+            return context.MedicineBatches
+                .Include(b => b.Medicine)
+                    .ThenInclude(m => m.UnitType)
+                .Include(b => b.Medicine)
+                    .ThenInclude(m => m.Group)
+                .Where(b => b.ExpirationDate <= thresholdDate)
+                .Select(b => new MedicineReportItem
+                {
+                    Name = b.Medicine.Name,
+                    Code = b.Medicine.Code,
+                    Unit = b.Medicine.UnitType.Name,
+                    ExpirationDate = b.ExpirationDate,
+                    Quantity = b.Quantity,
+                    Category = b.Medicine.Group.Name,
+                })
+                .ToList();
+        }
+
+        public List<MedicineReportItem> GetLowStockMedicines()
+        {
+            using var context = new PharmacyDbContext();
+            return context.Medicines
+                .Select(m => new
+                {
+                    Medicine = m,
+                    TotalQuantity = m.MedicineBatches.Sum(b => (int?)b.Quantity) ?? 0
+                })
+                .Where(x => x.TotalQuantity <= 10)
+                .Select(x => new MedicineReportItem
+                {
+                    Name = x.Medicine.Name,
+                    Code = x.Medicine.Code,
+                    Unit = x.Medicine.UnitType != null ? x.Medicine.UnitType.Name : "(Chưa có)",
+                    Quantity = x.TotalQuantity
+                })
+                .ToList();
+        }
+
+
+        public StockSummary GetStockSummary()
+        {
+            using var context = new PharmacyDbContext();
+            var totalQty = context.MedicineBatches.Sum(b => b.Quantity);
+            var totalMeds = context.Medicines.Count();
+            var expiring = GetExpiringMedicines().Count;
+            var lowStock = GetLowStockMedicines().Count;
+
+            return new StockSummary
+            {
+                TotalMedicines = totalMeds,
+                TotalMedicineBatch = totalQty,
+                ExpiringCount = expiring,
+                LowStockCount = lowStock
+            };
+        }
     }
 }

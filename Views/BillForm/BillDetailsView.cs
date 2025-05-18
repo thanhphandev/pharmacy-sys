@@ -7,6 +7,7 @@ using pharmacy_sys.Repositories.POSRepositories;
 using pharmacy_sys.Services.BillServices;
 using pharmacy_sys.Services.LogServices;
 using pharmacy_sys.Services.MedicineServices;
+using pharmacy_sys.Services.PrintInvoiceServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,9 +34,11 @@ namespace pharmacy_sys.Views.BillForm
 
             var logService = new LogService(logRepository);
             var medicineService = new MedicineService(medicineRepository, medicineBatchRepository, logService);
+            var printInvoiceService = new PrintInvoiceService(billRepository);
 
             var billService = new BillService(billRepository, medicineService, logService);
-            new BillDetailsPresenter(this, billService);
+            
+            new BillDetailsPresenter(this, billService, printInvoiceService);
         }
 
         public int BillId { get => _billId; set => _billId = value; }
@@ -46,6 +49,7 @@ namespace pharmacy_sys.Views.BillForm
 
         public event EventHandler LoadBillDetails;
         public event EventHandler UpdateBillEvent;
+        public event EventHandler PrintBillEvent;
 
         public void DisplayBillDetails(List<BillDetail> billDetails)
         {
@@ -55,6 +59,7 @@ namespace pharmacy_sys.Views.BillForm
             dgvBillDetails.Columns["colMedicineName"].DataPropertyName = "MedicineName";
             dgvBillDetails.Columns["colPrice"].DataPropertyName = "PriceFormatted";
             dgvBillDetails.Columns["colQuantity"].DataPropertyName = "Quantity";
+            dgvBillDetails.Columns["colUnitType"].DataPropertyName = "UnitType";
             dgvBillDetails.Columns["colAmount"].DataPropertyName = "AmountFormatted";
 
             var billDetailList = new BindingList<BillDetail>(billDetails);
@@ -188,6 +193,11 @@ namespace pharmacy_sys.Views.BillForm
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             UpdateBillEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            PrintBillEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -9,6 +9,7 @@ using pharmacy_sys.Services.CategoryServices;
 using pharmacy_sys.Services.LogServices;
 using pharmacy_sys.Services.MedicineServices;
 using pharmacy_sys.Services.POSServices;
+using pharmacy_sys.Services.PrintInvoiceServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,8 +40,8 @@ namespace pharmacy_sys.Views.POSForm
             var categoryService = new CategoryService(categoryRepository, logService);
             var medicineService = new MedicineService(medicineRepository, medicineBatchRepository, logService);
             var posService = new POSService(billRepository, medicineService, logService);
-            
-            new POSPresenter(this, medicineService, categoryService, posService);
+            var printInvoiceService = new PrintInvoiceService(billRepository);
+            new POSPresenter(this, medicineService, categoryService, posService, printInvoiceService);
         }
 
         public string SearchText { get => txtSearch.Text; set => txtSearch.Text = value; }
@@ -83,6 +84,7 @@ namespace pharmacy_sys.Views.POSForm
 
         public string Note { get => txtNote.Text; set => txtNote.Text = value; }
         public decimal TotalPrice { get => CurrencyFormatter.ParseVietnameseCurrency(txtTotalPrice.Text); set => txtTotalPrice.Text = CurrencyFormatter.FormatVietnameseCurrency(value); }
+        public decimal GrandAmount { get => CurrencyFormatter.ParseVietnameseCurrency(txtTotal.Text); set => txtTotal.Text = CurrencyFormatter.FormatVietnameseCurrency(value); }
 
         public event EventHandler LoadMedicineProductsEvent;
         public event EventHandler SearchMedicines;

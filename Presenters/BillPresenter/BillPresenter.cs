@@ -1,4 +1,5 @@
-﻿using pharmacy_sys.Services.BillServices;
+﻿using pharmacy_sys.Models;
+using pharmacy_sys.Services.BillServices;
 using pharmacy_sys.Views.BillForm;
 using pharmacy_sys.Views.ConfirmPasswordForm;
 using System;
@@ -57,6 +58,12 @@ namespace pharmacy_sys.Presenters.BillPresenter
 
         private void OnDeleteBill(object? sender, EventArgs e)
         {
+            if (UserSession.Role != UserRole.Admin)
+            {
+                MessageBox.Show("Bạn không có quyền cập nhật hóa đơn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             int selectedBillId = _billView.GetSelectedBillId();
             if (selectedBillId < 0)
             {
