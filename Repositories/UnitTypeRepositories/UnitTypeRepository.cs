@@ -24,7 +24,7 @@ namespace pharmacy_sys.Repositories.UnitTypeRepositories
 
         public void DeleteUnitType(int id)
         {
-            using var context = new PharmacyDbContext();
+            using var context = new PharmacyDbContext();          
             var unitType = context.UnitTypes.Find(id);
             if(unitType == null)
             {
@@ -61,6 +61,13 @@ namespace pharmacy_sys.Repositories.UnitTypeRepositories
             }
             unitType.Name = newName;
             context.SaveChanges();
+        }
+
+        public bool IsUpdateUnitReferenced(int id)
+        {
+            using var context = new PharmacyDbContext();
+
+            return context.Medicines.Any(m => m.Id == id);
         }
     }
 }

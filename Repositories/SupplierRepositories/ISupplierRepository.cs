@@ -15,5 +15,6 @@ namespace pharmacy_sys.Repositories.SupplierRepositories
         public void DeleteSupplier(int id);
         public List<Supplier> GetAllSuppliers();
         public List<Supplier> SearchSupplierByName(string searchText);
+        public bool IsSupplierReferenced(int supplierId);
     }
 }

@@ -14,5 +14,6 @@ namespace pharmacy_sys.Repositories.CategoryRepositories
         void DeleteCategory(int id);
         void UpdateCategory(int id, string name, string? description);
         MedicineGroup GetCategoryById(int id);
+        bool IsCategoryReferenced(int categoryId);
     }
 }

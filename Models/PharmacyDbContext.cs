@@ -9,7 +9,7 @@ namespace pharmacy_sys.Models
 {
     public class PharmacyDbContext : DbContext
     {
-        private string connectionString = @"Data Source=DESKTOP-JPDKROQ\SQLEXPRESS;Initial Catalog=PharmacySystem;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+        private string connectionString = @"Data Source=DESKTOP-THO1V7M\SQLEXPRESS;Initial Catalog=PharmacySystem;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
         public DbSet<Supplier> Suppliers { get; set; } = null!;
         public DbSet<UnitType> UnitTypes { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;

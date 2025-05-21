@@ -40,6 +40,10 @@ namespace pharmacy_sys.Services.UnitTypeServices
             {
                 throw new ArgumentException("ID không hợp lệ");
             }
+            if (_unitTypeRepository.IsUpdateUnitReferenced(id))
+            {
+                throw new InvalidOperationException($"Không thể xóa đơn vị với ID = {id} vì đang được sử dụng");
+            }
             _unitTypeRepository.DeleteUnitType(id);
             _logService.CreateLogAction(
                 staffId: UserSession.Id,

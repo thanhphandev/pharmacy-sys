@@ -61,6 +61,12 @@ namespace pharmacy_sys.Services.SupplierServices
                 throw new ArgumentException("ID không hợp lệ", nameof(id));
             }
 
+            if (_supplierRepository.IsSupplierReferenced(id))
+            {
+                throw new InvalidOperationException($"Không thể xóa nhà cung cấp với ID = {id} vì đang được sử dụng.");
+            }
+
+
             _supplierRepository.DeleteSupplier(id);
             _logService.CreateLogAction(
                 staffId: UserSession.Id,

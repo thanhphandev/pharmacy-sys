@@ -192,19 +192,42 @@ namespace pharmacy_sys.Presenters.SupplierPresenter
 
         private void OnDeleteSupplier(object? sender, EventArgs e)
         {
-            var currentSupplier = _view.GetSelectedSupplier();
-            if (currentSupplier != null)
+            try
             {
-                var result = MessageBox.Show("Bạn có chắc chắn muốn xóa nhà cung cấp này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
+                var currentSupplier = _view.GetSelectedSupplier();
+                if (currentSupplier != null)
                 {
-                    _supplierService.DeleteSupplier(currentSupplier.Id);
-                    LoadSuppliers();
+                    var result = MessageBox.Show(
+                        "Bạn có chắc chắn muốn xóa nhà cung cấp này không?",
+                        "Xác nhận",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        _supplierService.DeleteSupplier(currentSupplier.Id);
+                        LoadSuppliers();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Vui lòng chọn nhà cung cấp để xóa!",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng chọn nhà cung cấp để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    $"Đã xảy ra lỗi khi xóa nhà cung cấp: {ex.Message}",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 

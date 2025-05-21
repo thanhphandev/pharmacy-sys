@@ -44,6 +44,10 @@ namespace pharmacy_sys.Services.CategoryServices
             {
                 throw new ArgumentException("ID danh mục thuốc không hợp lệ");
             }
+            if (_categoryRepository.IsCategoryReferenced(id))
+            {
+                throw new Exception($"Không thể xóa danh mục có ID = {id} vì đang được sử dụng.");
+            }
             _categoryRepository.DeleteCategory(id);
             _logService.CreateLogAction(
                 staffId: UserSession.Id,

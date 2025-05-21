@@ -14,5 +14,6 @@ namespace pharmacy_sys.Repositories.UnitTypeRepositories
         List<UnitType> GetAllUnitTypes();
         void UpdateUnitType(int id, string newName);
         UnitType GetUnitTypeById(int id);
+        bool IsUpdateUnitReferenced(int id);
     }
 }

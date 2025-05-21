@@ -24,7 +24,9 @@ namespace pharmacy_sys.Repositories.SupplierRepositories
         {
             using (var context = new PharmacyDbContext())
             {
+               
                 var supplier = context.Suppliers.Find(id);
+
                 if (supplier != null)
                 {
                     context.Suppliers.Remove(supplier);
@@ -81,6 +83,13 @@ namespace pharmacy_sys.Repositories.SupplierRepositories
             existingSupplier.Address = supplier.Address;
 
             context.SaveChanges();
+        }
+
+        public bool IsSupplierReferenced(int supplierId)
+        {
+            using var context = new PharmacyDbContext();
+
+            return context.Medicines.Any(m => m.Id == supplierId);
         }
 
 

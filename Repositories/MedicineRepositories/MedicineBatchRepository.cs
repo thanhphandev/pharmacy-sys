@@ -167,20 +167,20 @@ namespace pharmacy_sys.Repositories.MedicineRepositories
         public List<MedicineReportItem> GetLowStockMedicines()
         {
             using var context = new PharmacyDbContext();
+
             return context.Medicines
-                .Select(m => new
+                .Include(m => m.UnitType)
+                .Include(m => m.Group)
+                .Include(m => m.MedicineBatches)
+                .Select(m => new MedicineReportItem
                 {
-                    Medicine = m,
-                    TotalQuantity = m.MedicineBatches.Sum(b => (int?)b.Quantity) ?? 0
+                    Name = m.Name,
+                    Code = m.Code,
+                    Unit = m.UnitType != null ? m.UnitType.Name : "(Chưa có)",
+                    Quantity = m.MedicineBatches.Sum(b => (int?)b.Quantity) ?? 0,
+                    Category = m.Group != null ? m.Group.Name : "(Chưa có)"
                 })
-                .Where(x => x.TotalQuantity <= 10)
-                .Select(x => new MedicineReportItem
-                {
-                    Name = x.Medicine.Name,
-                    Code = x.Medicine.Code,
-                    Unit = x.Medicine.UnitType != null ? x.Medicine.UnitType.Name : "(Chưa có)",
-                    Quantity = x.TotalQuantity
-                })
+                .Where(x => x.Quantity <= 10)
                 .ToList();
         }
 

@@ -26,7 +26,7 @@ namespace pharmacy_sys.Repositories.CategoryRepositories
         {
             using var context = new PharmacyDbContext();
             var category = context.MedicineGroups.Find(id);
-
+            
             if (category != null)
             {
                 context.MedicineGroups.Remove(category);
@@ -72,6 +72,14 @@ namespace pharmacy_sys.Repositories.CategoryRepositories
                 throw new Exception($"Không tìm thấy danh mục với ID = {id}");
             }
         }
+
+        public bool IsCategoryReferenced(int categoryId)
+        {
+            using var context = new PharmacyDbContext();
+
+            return context.Medicines.Any(m => m.GroupId == categoryId);
+        }
+
 
     }
 }

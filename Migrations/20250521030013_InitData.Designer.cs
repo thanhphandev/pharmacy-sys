@@ -12,8 +12,8 @@ using pharmacy_sys.Models;
 namespace pharmacy_sys.Migrations
 {
     [DbContext(typeof(PharmacyDbContext))]
-    [Migration("20250518104458_InitialDatabase")]
-    partial class InitialDatabase
+    [Migration("20250521030013_InitData")]
+    partial class InitData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
